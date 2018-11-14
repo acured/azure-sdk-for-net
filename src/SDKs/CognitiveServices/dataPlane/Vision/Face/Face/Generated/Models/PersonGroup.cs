@@ -17,7 +17,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face.Models
     /// <summary>
     /// Person group object.
     /// </summary>
-    public partial class PersonGroup : NameAndUserDataContract
+    public partial class PersonGroup : MetaDataContract
     {
         /// <summary>
         /// Initializes a new instance of the PersonGroup class.
@@ -36,8 +36,10 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face.Models
         /// 128.</param>
         /// <param name="userData">User specified data. Length should not
         /// exceed 16KB.</param>
-        public PersonGroup(string personGroupId, string name = default(string), string userData = default(string))
-            : base(name, userData)
+        /// <param name="recognitionModel">Recognition model name. maximum
+        /// length is 128.</param>
+        public PersonGroup(string personGroupId, string name = default(string), string userData = default(string), string recognitionModel = default(string))
+            : base(name, userData, recognitionModel)
         {
             PersonGroupId = personGroupId;
             CustomInit();

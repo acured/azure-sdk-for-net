@@ -63,6 +63,9 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// <param name='userData'>
         /// User specified data. Length should not exceed 16KB.
         /// </param>
+        /// <param name='recognitionModel'>
+        /// Recognition model name. maximum length is 128.
+        /// </param>
         /// <param name='customHeaders'>
         /// Headers that will be added to request.
         /// </param>
@@ -81,7 +84,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse> CreateWithHttpMessagesAsync(string largePersonGroupId, string name = default(string), string userData = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse> CreateWithHttpMessagesAsync(string largePersonGroupId, string name = default(string), string userData = default(string), string recognitionModel = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (Client.Endpoint == null)
             {
@@ -116,11 +119,19 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
                     throw new ValidationException(ValidationRules.MaxLength, "userData", 16384);
                 }
             }
-            NameAndUserDataContract body = new NameAndUserDataContract();
-            if (name != null || userData != null)
+            if (recognitionModel != null)
+            {
+                if (recognitionModel.Length > 128)
+                {
+                    throw new ValidationException(ValidationRules.MaxLength, "recognitionModel", 128);
+                }
+            }
+            MetaDataContract body = new MetaDataContract();
+            if (name != null || userData != null || recognitionModel != null)
             {
                 body.Name = name;
                 body.UserData = userData;
+                body.RecognitionModel = recognitionModel;
             }
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;

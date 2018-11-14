@@ -17,7 +17,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face.Models
     /// <summary>
     /// Large person group object.
     /// </summary>
-    public partial class LargePersonGroup : NameAndUserDataContract
+    public partial class LargePersonGroup : MetaDataContract
     {
         /// <summary>
         /// Initializes a new instance of the LargePersonGroup class.
@@ -36,8 +36,10 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face.Models
         /// 128.</param>
         /// <param name="userData">User specified data. Length should not
         /// exceed 16KB.</param>
-        public LargePersonGroup(string largePersonGroupId, string name = default(string), string userData = default(string))
-            : base(name, userData)
+        /// <param name="recognitionModel">Recognition model name. maximum
+        /// length is 128.</param>
+        public LargePersonGroup(string largePersonGroupId, string name = default(string), string userData = default(string), string recognitionModel = default(string))
+            : base(name, userData, recognitionModel)
         {
             LargePersonGroupId = largePersonGroupId;
             CustomInit();

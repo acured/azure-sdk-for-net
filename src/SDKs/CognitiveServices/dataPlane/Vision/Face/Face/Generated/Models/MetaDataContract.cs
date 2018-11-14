@@ -15,30 +15,33 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face.Models
     using System.Linq;
 
     /// <summary>
-    /// Detected Face object.
+    /// A combination of user defined name and user specified data and
+    /// recognition model name for largePersonGroup/personGroup, and
+    /// largeFaceList/faceList.
     /// </summary>
-    public partial class DetectedFace
+    public partial class MetaDataContract : NameAndUserDataContract
     {
         /// <summary>
-        /// Initializes a new instance of the DetectedFace class.
+        /// Initializes a new instance of the MetaDataContract class.
         /// </summary>
-        public DetectedFace()
+        public MetaDataContract()
         {
             CustomInit();
         }
 
         /// <summary>
-        /// Initializes a new instance of the DetectedFace class.
+        /// Initializes a new instance of the MetaDataContract class.
         /// </summary>
+        /// <param name="name">User defined name, maximum length is
+        /// 128.</param>
+        /// <param name="userData">User specified data. Length should not
+        /// exceed 16KB.</param>
         /// <param name="recognitionModel">Recognition model name. maximum
         /// length is 128.</param>
-        public DetectedFace(FaceRectangle faceRectangle, System.Guid? faceId = default(System.Guid?), string recognitionModel = default(string), FaceLandmarks faceLandmarks = default(FaceLandmarks), FaceAttributes faceAttributes = default(FaceAttributes))
+        public MetaDataContract(string name = default(string), string userData = default(string), string recognitionModel = default(string))
+            : base(name, userData)
         {
-            FaceId = faceId;
             RecognitionModel = recognitionModel;
-            FaceRectangle = faceRectangle;
-            FaceLandmarks = faceLandmarks;
-            FaceAttributes = faceAttributes;
             CustomInit();
         }
 
@@ -48,30 +51,10 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face.Models
         partial void CustomInit();
 
         /// <summary>
-        /// </summary>
-        [JsonProperty(PropertyName = "faceId")]
-        public System.Guid? FaceId { get; set; }
-
-        /// <summary>
         /// Gets or sets recognition model name. maximum length is 128.
         /// </summary>
         [JsonProperty(PropertyName = "RecognitionModel")]
         public string RecognitionModel { get; set; }
-
-        /// <summary>
-        /// </summary>
-        [JsonProperty(PropertyName = "faceRectangle")]
-        public FaceRectangle FaceRectangle { get; set; }
-
-        /// <summary>
-        /// </summary>
-        [JsonProperty(PropertyName = "faceLandmarks")]
-        public FaceLandmarks FaceLandmarks { get; set; }
-
-        /// <summary>
-        /// </summary>
-        [JsonProperty(PropertyName = "faceAttributes")]
-        public FaceAttributes FaceAttributes { get; set; }
 
         /// <summary>
         /// Validate the object.
@@ -79,26 +62,15 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face.Models
         /// <exception cref="ValidationException">
         /// Thrown if validation fails
         /// </exception>
-        public virtual void Validate()
+        public override void Validate()
         {
-            if (FaceRectangle == null)
-            {
-                throw new ValidationException(ValidationRules.CannotBeNull, "FaceRectangle");
-            }
+            base.Validate();
             if (RecognitionModel != null)
             {
                 if (RecognitionModel.Length > 128)
                 {
                     throw new ValidationException(ValidationRules.MaxLength, "RecognitionModel", 128);
                 }
-            }
-            if (FaceRectangle != null)
-            {
-                FaceRectangle.Validate();
-            }
-            if (FaceLandmarks != null)
-            {
-                FaceLandmarks.Validate();
             }
         }
     }
