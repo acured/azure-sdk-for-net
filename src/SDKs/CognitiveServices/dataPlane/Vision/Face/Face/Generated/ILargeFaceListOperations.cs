@@ -37,7 +37,6 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// User specified data. Length should not exceed 16KB.
         /// </param>
         /// <param name='recognitionModel'>
-        /// Recognition model name. maximum length is 128.
         /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.

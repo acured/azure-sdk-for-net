@@ -64,7 +64,6 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// User specified data. Length should not exceed 16KB.
         /// </param>
         /// <param name='recognitionModel'>
-        /// Recognition model name. maximum length is 128.
         /// </param>
         /// <param name='customHeaders'>
         /// Headers that will be added to request.
@@ -117,13 +116,6 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
                 if (userData.Length > 16384)
                 {
                     throw new ValidationException(ValidationRules.MaxLength, "userData", 16384);
-                }
-            }
-            if (recognitionModel != null)
-            {
-                if (recognitionModel.Length > 128)
-                {
-                    throw new ValidationException(ValidationRules.MaxLength, "recognitionModel", 128);
                 }
             }
             MetaDataContract body = new MetaDataContract();

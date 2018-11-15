@@ -10,7 +10,6 @@
 
 namespace Microsoft.Azure.CognitiveServices.Vision.Face.Models
 {
-    using Microsoft.Rest;
     using Newtonsoft.Json;
     using System.Linq;
 
@@ -36,8 +35,6 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face.Models
         /// 128.</param>
         /// <param name="userData">User specified data. Length should not
         /// exceed 16KB.</param>
-        /// <param name="recognitionModel">Recognition model name. maximum
-        /// length is 128.</param>
         public MetaDataContract(string name = default(string), string userData = default(string), string recognitionModel = default(string))
             : base(name, userData)
         {
@@ -51,7 +48,6 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face.Models
         partial void CustomInit();
 
         /// <summary>
-        /// Gets or sets recognition model name. maximum length is 128.
         /// </summary>
         [JsonProperty(PropertyName = "RecognitionModel")]
         public string RecognitionModel { get; set; }
@@ -59,19 +55,12 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face.Models
         /// <summary>
         /// Validate the object.
         /// </summary>
-        /// <exception cref="ValidationException">
+        /// <exception cref="Rest.ValidationException">
         /// Thrown if validation fails
         /// </exception>
         public override void Validate()
         {
             base.Validate();
-            if (RecognitionModel != null)
-            {
-                if (RecognitionModel.Length > 128)
-                {
-                    throw new ValidationException(ValidationRules.MaxLength, "RecognitionModel", 128);
-                }
-            }
         }
     }
 }

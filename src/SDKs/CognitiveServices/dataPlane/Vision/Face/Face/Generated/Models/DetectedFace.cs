@@ -30,8 +30,6 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face.Models
         /// <summary>
         /// Initializes a new instance of the DetectedFace class.
         /// </summary>
-        /// <param name="recognitionModel">Recognition model name. maximum
-        /// length is 128.</param>
         public DetectedFace(FaceRectangle faceRectangle, System.Guid? faceId = default(System.Guid?), string recognitionModel = default(string), FaceLandmarks faceLandmarks = default(FaceLandmarks), FaceAttributes faceAttributes = default(FaceAttributes))
         {
             FaceId = faceId;
@@ -53,7 +51,6 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face.Models
         public System.Guid? FaceId { get; set; }
 
         /// <summary>
-        /// Gets or sets recognition model name. maximum length is 128.
         /// </summary>
         [JsonProperty(PropertyName = "RecognitionModel")]
         public string RecognitionModel { get; set; }
@@ -84,13 +81,6 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face.Models
             if (FaceRectangle == null)
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "FaceRectangle");
-            }
-            if (RecognitionModel != null)
-            {
-                if (RecognitionModel.Length > 128)
-                {
-                    throw new ValidationException(ValidationRules.MaxLength, "RecognitionModel", 128);
-                }
             }
             if (FaceRectangle != null)
             {

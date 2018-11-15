@@ -36,8 +36,6 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face.Models
         /// 128.</param>
         /// <param name="userData">User specified data. Length should not
         /// exceed 16KB.</param>
-        /// <param name="recognitionModel">Recognition model name. maximum
-        /// length is 128.</param>
         public PersonGroup(string personGroupId, string name = default(string), string userData = default(string), string recognitionModel = default(string))
             : base(name, userData, recognitionModel)
         {
