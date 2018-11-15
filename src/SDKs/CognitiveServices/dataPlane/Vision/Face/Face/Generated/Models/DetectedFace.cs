@@ -30,7 +30,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face.Models
         /// <summary>
         /// Initializes a new instance of the DetectedFace class.
         /// </summary>
-        public DetectedFace(FaceRectangle faceRectangle, System.Guid? faceId = default(System.Guid?), string recognitionModel = default(string), FaceLandmarks faceLandmarks = default(FaceLandmarks), FaceAttributes faceAttributes = default(FaceAttributes))
+        public DetectedFace(string recognitionModel, FaceRectangle faceRectangle, System.Guid? faceId = default(System.Guid?), FaceLandmarks faceLandmarks = default(FaceLandmarks), FaceAttributes faceAttributes = default(FaceAttributes))
         {
             FaceId = faceId;
             RecognitionModel = recognitionModel;
@@ -78,6 +78,10 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face.Models
         /// </exception>
         public virtual void Validate()
         {
+            if (RecognitionModel == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "RecognitionModel");
+            }
             if (FaceRectangle == null)
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "FaceRectangle");

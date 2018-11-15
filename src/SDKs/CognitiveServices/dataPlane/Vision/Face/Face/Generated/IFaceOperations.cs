@@ -175,6 +175,9 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// Detect human faces in an image and returns face locations, and
         /// optionally with faceIds, landmarks, and attributes.
         /// </summary>
+        /// <param name='recognitionModel'>
+        /// Recognition model name, maximum length is 128.
+        /// </param>
         /// <param name='url'>
         /// Publicly reachable URL of an image
         /// </param>
@@ -208,7 +211,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// <exception cref="Microsoft.Rest.ValidationException">
         /// Thrown when a required parameter is null
         /// </exception>
-        Task<HttpOperationResponse<IList<DetectedFace>>> DetectWithUrlWithHttpMessagesAsync(string url, bool? returnFaceId = true, bool? returnFaceLandmarks = false, IList<FaceAttributeType> returnFaceAttributes = default(IList<FaceAttributeType>), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<IList<DetectedFace>>> DetectWithUrlWithHttpMessagesAsync(string recognitionModel, string url, bool? returnFaceId = true, bool? returnFaceLandmarks = false, IList<FaceAttributeType> returnFaceAttributes = default(IList<FaceAttributeType>), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Verify whether two faces belong to a same person. Compares a face
         /// Id with a Person Id
@@ -256,6 +259,9 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// <param name='image'>
         /// An image stream.
         /// </param>
+        /// <param name='recognitionModel'>
+        /// Recognition model name, maximum length is 128.
+        /// </param>
         /// <param name='returnFaceId'>
         /// A value indicating whether the operation should return faceIds of
         /// detected faces.
@@ -286,6 +292,6 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// <exception cref="Microsoft.Rest.ValidationException">
         /// Thrown when a required parameter is null
         /// </exception>
-        Task<HttpOperationResponse<IList<DetectedFace>>> DetectWithStreamWithHttpMessagesAsync(Stream image, bool? returnFaceId = true, bool? returnFaceLandmarks = false, IList<FaceAttributeType> returnFaceAttributes = default(IList<FaceAttributeType>), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<IList<DetectedFace>>> DetectWithStreamWithHttpMessagesAsync(Stream image, string recognitionModel, bool? returnFaceId = true, bool? returnFaceLandmarks = false, IList<FaceAttributeType> returnFaceAttributes = default(IList<FaceAttributeType>), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
     }
 }

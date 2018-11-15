@@ -163,6 +163,9 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
             /// <param name='operations'>
             /// The operations group for this extension method.
             /// </param>
+            /// <param name='recognitionModel'>
+            /// Recognition model name, maximum length is 128.
+            /// </param>
             /// <param name='url'>
             /// Publicly reachable URL of an image
             /// </param>
@@ -184,9 +187,9 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<IList<DetectedFace>> DetectWithUrlAsync(this IFaceOperations operations, string url, bool? returnFaceId = true, bool? returnFaceLandmarks = false, IList<FaceAttributeType> returnFaceAttributes = default(IList<FaceAttributeType>), CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<IList<DetectedFace>> DetectWithUrlAsync(this IFaceOperations operations, string recognitionModel, string url, bool? returnFaceId = true, bool? returnFaceLandmarks = false, IList<FaceAttributeType> returnFaceAttributes = default(IList<FaceAttributeType>), CancellationToken cancellationToken = default(CancellationToken))
             {
-                using (var _result = await operations.DetectWithUrlWithHttpMessagesAsync(url, returnFaceId, returnFaceLandmarks, returnFaceAttributes, null, cancellationToken).ConfigureAwait(false))
+                using (var _result = await operations.DetectWithUrlWithHttpMessagesAsync(recognitionModel, url, returnFaceId, returnFaceLandmarks, returnFaceAttributes, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }
@@ -240,6 +243,9 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
             /// <param name='image'>
             /// An image stream.
             /// </param>
+            /// <param name='recognitionModel'>
+            /// Recognition model name, maximum length is 128.
+            /// </param>
             /// <param name='returnFaceId'>
             /// A value indicating whether the operation should return faceIds of detected
             /// faces.
@@ -258,9 +264,9 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<IList<DetectedFace>> DetectWithStreamAsync(this IFaceOperations operations, Stream image, bool? returnFaceId = true, bool? returnFaceLandmarks = false, IList<FaceAttributeType> returnFaceAttributes = default(IList<FaceAttributeType>), CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<IList<DetectedFace>> DetectWithStreamAsync(this IFaceOperations operations, Stream image, string recognitionModel, bool? returnFaceId = true, bool? returnFaceLandmarks = false, IList<FaceAttributeType> returnFaceAttributes = default(IList<FaceAttributeType>), CancellationToken cancellationToken = default(CancellationToken))
             {
-                using (var _result = await operations.DetectWithStreamWithHttpMessagesAsync(image, returnFaceId, returnFaceLandmarks, returnFaceAttributes, null, cancellationToken).ConfigureAwait(false))
+                using (var _result = await operations.DetectWithStreamWithHttpMessagesAsync(image, recognitionModel, returnFaceId, returnFaceLandmarks, returnFaceAttributes, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }
