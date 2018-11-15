@@ -840,9 +840,6 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// Detect human faces in an image and returns face locations, and optionally
         /// with faceIds, landmarks, and attributes.
         /// </summary>
-        /// <param name='recognitionModel'>
-        /// Recognition model name, maximum length is 128.
-        /// </param>
         /// <param name='url'>
         /// Publicly reachable URL of an image
         /// </param>
@@ -860,6 +857,9 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// face attributes include age, gender, headPose, smile, facialHair, glasses
         /// and emotion. Note that each face attribute analysis has additional
         /// computational and time cost.
+        /// </param>
+        /// <param name='recognitionModel'>
+        /// Recognition model name, maximum length is 128.
         /// </param>
         /// <param name='customHeaders'>
         /// Headers that will be added to request.
@@ -882,15 +882,11 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<IList<DetectedFace>>> DetectWithUrlWithHttpMessagesAsync(string recognitionModel, string url, bool? returnFaceId = true, bool? returnFaceLandmarks = false, IList<FaceAttributeType> returnFaceAttributes = default(IList<FaceAttributeType>), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<IList<DetectedFace>>> DetectWithUrlWithHttpMessagesAsync(string url, bool? returnFaceId = true, bool? returnFaceLandmarks = false, IList<FaceAttributeType> returnFaceAttributes = default(IList<FaceAttributeType>), string recognitionModel = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (Client.Endpoint == null)
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "this.Client.Endpoint");
-            }
-            if (recognitionModel == null)
-            {
-                throw new ValidationException(ValidationRules.CannotBeNull, "recognitionModel");
             }
             if (recognitionModel != null)
             {
@@ -927,7 +923,6 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
             var _baseUrl = Client.BaseUri;
             var _url = _baseUrl + (_baseUrl.EndsWith("/") ? "" : "/") + "detect";
             _url = _url.Replace("{Endpoint}", Client.Endpoint);
-            _url = _url.Replace("{RecognitionModel}", System.Uri.EscapeDataString(recognitionModel));
             List<string> _queryParameters = new List<string>();
             if (returnFaceId != null)
             {
@@ -940,6 +935,10 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
             if (returnFaceAttributes != null)
             {
                 _queryParameters.Add(string.Format("returnFaceAttributes={0}", System.Uri.EscapeDataString(string.Join(",", returnFaceAttributes))));
+            }
+            if (recognitionModel != null)
+            {
+                _queryParameters.Add(string.Format("RecognitionModel={0}", System.Uri.EscapeDataString(recognitionModel)));
             }
             if (_queryParameters.Count > 0)
             {
@@ -1260,9 +1259,6 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// <param name='image'>
         /// An image stream.
         /// </param>
-        /// <param name='recognitionModel'>
-        /// Recognition model name, maximum length is 128.
-        /// </param>
         /// <param name='returnFaceId'>
         /// A value indicating whether the operation should return faceIds of detected
         /// faces.
@@ -1277,6 +1273,9 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// face attributes include age, gender, headPose, smile, facialHair, glasses
         /// and emotion. Note that each face attribute analysis has additional
         /// computational and time cost.
+        /// </param>
+        /// <param name='recognitionModel'>
+        /// Recognition model name, maximum length is 128.
         /// </param>
         /// <param name='customHeaders'>
         /// Headers that will be added to request.
@@ -1299,7 +1298,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<IList<DetectedFace>>> DetectWithStreamWithHttpMessagesAsync(Stream image, string recognitionModel, bool? returnFaceId = true, bool? returnFaceLandmarks = false, IList<FaceAttributeType> returnFaceAttributes = default(IList<FaceAttributeType>), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<IList<DetectedFace>>> DetectWithStreamWithHttpMessagesAsync(Stream image, bool? returnFaceId = true, bool? returnFaceLandmarks = false, IList<FaceAttributeType> returnFaceAttributes = default(IList<FaceAttributeType>), string recognitionModel = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (Client.Endpoint == null)
             {
@@ -1308,10 +1307,6 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
             if (image == null)
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "image");
-            }
-            if (recognitionModel == null)
-            {
-                throw new ValidationException(ValidationRules.CannotBeNull, "recognitionModel");
             }
             if (recognitionModel != null)
             {
@@ -1339,7 +1334,6 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
             var _baseUrl = Client.BaseUri;
             var _url = _baseUrl + (_baseUrl.EndsWith("/") ? "" : "/") + "detect";
             _url = _url.Replace("{Endpoint}", Client.Endpoint);
-            _url = _url.Replace("{RecognitionModel}", System.Uri.EscapeDataString(recognitionModel));
             List<string> _queryParameters = new List<string>();
             if (returnFaceId != null)
             {
@@ -1352,6 +1346,10 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
             if (returnFaceAttributes != null)
             {
                 _queryParameters.Add(string.Format("returnFaceAttributes={0}", System.Uri.EscapeDataString(string.Join(",", returnFaceAttributes))));
+            }
+            if (recognitionModel != null)
+            {
+                _queryParameters.Add(string.Format("RecognitionModel={0}", System.Uri.EscapeDataString(recognitionModel)));
             }
             if (_queryParameters.Count > 0)
             {
