@@ -126,14 +126,6 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face.Models
                     throw new ValidationException(ValidationRules.MaxLength, "Context", 1024);
                 }
             }
-            if (CreatedTime.Length > 128)
-            {
-                throw new ValidationException(ValidationRules.MaxLength, "CreatedTime", 128);
-            }
-            if (LastUpdateTime.Length > 128)
-            {
-                throw new ValidationException(ValidationRules.MaxLength, "LastUpdateTime", 128);
-            }
         }
     }
 }

@@ -30,19 +30,21 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face.Models
         /// Initializes a new instance of the OperationStatus class.
         /// </summary>
         /// <param name="status">Training status: notstarted, running,
-        /// succeeded, failed. Possible values include: 'nonstarted',
+        /// succeeded, failed. Possible values include: 'notstarted',
         /// 'running', 'succeeded', 'failed'</param>
         /// <param name="createdTime">A combined UTC date and time string that
         /// describes the created time.</param>
         /// <param name="lastActionTime">A combined UTC date and time string
         /// that describes the last modify time.</param>
         /// <param name="resourceLocation">Show resource location.</param>
-        public OperationStatus(OperationStatusType? status = default(OperationStatusType?), System.DateTime? createdTime = default(System.DateTime?), System.DateTime? lastActionTime = default(System.DateTime?), string resourceLocation = default(string))
+        /// <param name="message">Show return message.</param>
+        public OperationStatus(OperationStatusType? status = default(OperationStatusType?), System.DateTime? createdTime = default(System.DateTime?), System.DateTime? lastActionTime = default(System.DateTime?), string resourceLocation = default(string), string message = default(string))
         {
             Status = status;
             CreatedTime = createdTime;
             LastActionTime = lastActionTime;
             ResourceLocation = resourceLocation;
+            Message = message;
             CustomInit();
         }
 
@@ -53,7 +55,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face.Models
 
         /// <summary>
         /// Gets or sets training status: notstarted, running, succeeded,
-        /// failed. Possible values include: 'nonstarted', 'running',
+        /// failed. Possible values include: 'notstarted', 'running',
         /// 'succeeded', 'failed'
         /// </summary>
         [JsonProperty(PropertyName = "status")]
@@ -78,6 +80,12 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face.Models
         /// </summary>
         [JsonProperty(PropertyName = "resourceLocation")]
         public string ResourceLocation { get; set; }
+
+        /// <summary>
+        /// Gets or sets show return message.
+        /// </summary>
+        [JsonProperty(PropertyName = "message")]
+        public string Message { get; set; }
 
     }
 }
