@@ -181,12 +181,19 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
             /// and emotion. Note that each face attribute analysis has additional
             /// computational and time cost.
             /// </param>
+            /// <param name='recognitionModel'>
+            /// Recognition model name. Recognition model is used when the face features
+            /// are extracted, so a recognition model version could be provided when
+            /// performing a Detection. If the user does not provide recognition model,
+            /// default is 'recognition_v01'. Possible values include: 'recognition_v01',
+            /// 'recognition_v02'
+            /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<IList<DetectedFace>> DetectWithUrlAsync(this IFaceOperations operations, string url, bool? returnFaceId = true, bool? returnFaceLandmarks = false, IList<FaceAttributeType> returnFaceAttributes = default(IList<FaceAttributeType>), CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<IList<DetectedFace>> DetectWithUrlAsync(this IFaceOperations operations, string url, bool? returnFaceId = true, bool? returnFaceLandmarks = false, IList<FaceAttributeType> returnFaceAttributes = default(IList<FaceAttributeType>), RecognitionModel recognitionModel = default(RecognitionModel), CancellationToken cancellationToken = default(CancellationToken))
             {
-                using (var _result = await operations.DetectWithUrlWithHttpMessagesAsync(url, returnFaceId, returnFaceLandmarks, returnFaceAttributes, null, cancellationToken).ConfigureAwait(false))
+                using (var _result = await operations.DetectWithUrlWithHttpMessagesAsync(url, returnFaceId, returnFaceLandmarks, returnFaceAttributes, recognitionModel, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }
@@ -255,12 +262,19 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
             /// and emotion. Note that each face attribute analysis has additional
             /// computational and time cost.
             /// </param>
+            /// <param name='recognitionModel'>
+            /// Recognition model name. Recognition model is used when the face features
+            /// are extracted, so a recognition model version could be provided when
+            /// performing a Detection. If the user does not provide recognition model,
+            /// default is 'recognition_v01'. Possible values include: 'recognition_v01',
+            /// 'recognition_v02'
+            /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<IList<DetectedFace>> DetectWithStreamAsync(this IFaceOperations operations, Stream image, bool? returnFaceId = true, bool? returnFaceLandmarks = false, IList<FaceAttributeType> returnFaceAttributes = default(IList<FaceAttributeType>), CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<IList<DetectedFace>> DetectWithStreamAsync(this IFaceOperations operations, Stream image, bool? returnFaceId = true, bool? returnFaceLandmarks = false, IList<FaceAttributeType> returnFaceAttributes = default(IList<FaceAttributeType>), RecognitionModel recognitionModel = default(RecognitionModel), CancellationToken cancellationToken = default(CancellationToken))
             {
-                using (var _result = await operations.DetectWithStreamWithHttpMessagesAsync(image, returnFaceId, returnFaceLandmarks, returnFaceAttributes, null, cancellationToken).ConfigureAwait(false))
+                using (var _result = await operations.DetectWithStreamWithHttpMessagesAsync(image, returnFaceId, returnFaceLandmarks, returnFaceAttributes, recognitionModel, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }

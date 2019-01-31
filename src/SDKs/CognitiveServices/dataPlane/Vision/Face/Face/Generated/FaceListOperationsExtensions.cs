@@ -38,12 +38,15 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
             /// <param name='userData'>
             /// User specified data. Length should not exceed 16KB.
             /// </param>
+            /// <param name='recognitionModel'>
+            /// Possible values include: 'recognition_v01', 'recognition_v02'
+            /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task CreateAsync(this IFaceListOperations operations, string faceListId, string name = default(string), string userData = default(string), CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task CreateAsync(this IFaceListOperations operations, string faceListId, string name = default(string), string userData = default(string), RecognitionModel recognitionModel = default(RecognitionModel), CancellationToken cancellationToken = default(CancellationToken))
             {
-                (await operations.CreateWithHttpMessagesAsync(faceListId, name, userData, null, cancellationToken).ConfigureAwait(false)).Dispose();
+                (await operations.CreateWithHttpMessagesAsync(faceListId, name, userData, recognitionModel, null, cancellationToken).ConfigureAwait(false)).Dispose();
             }
 
             /// <summary>

@@ -36,6 +36,9 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// <param name='userData'>
         /// User specified data. Length should not exceed 16KB.
         /// </param>
+        /// <param name='recognitionModel'>
+        /// Possible values include: 'recognition_v01', 'recognition_v02'
+        /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
         /// </param>
@@ -48,7 +51,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// <exception cref="Microsoft.Rest.ValidationException">
         /// Thrown when a required parameter is null
         /// </exception>
-        Task<HttpOperationResponse> CreateWithHttpMessagesAsync(string largeFaceListId, string name = default(string), string userData = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse> CreateWithHttpMessagesAsync(string largeFaceListId, string name = default(string), string userData = default(string), RecognitionModel recognitionModel = default(RecognitionModel), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Retrieve a large face list's information.
         /// </summary>
