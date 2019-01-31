@@ -30,9 +30,12 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face.Models
         /// <summary>
         /// Initializes a new instance of the DetectedFace class.
         /// </summary>
-        public DetectedFace(FaceRectangle faceRectangle, System.Guid? faceId = default(System.Guid?), FaceLandmarks faceLandmarks = default(FaceLandmarks), FaceAttributes faceAttributes = default(FaceAttributes))
+        /// <param name="recognitionModel">Possible values include:
+        /// 'recognition_v01', 'recognition_v02'</param>
+        public DetectedFace(RecognitionModel recognitionModel, FaceRectangle faceRectangle, System.Guid? faceId = default(System.Guid?), FaceLandmarks faceLandmarks = default(FaceLandmarks), FaceAttributes faceAttributes = default(FaceAttributes))
         {
             FaceId = faceId;
+            RecognitionModel = recognitionModel;
             FaceRectangle = faceRectangle;
             FaceLandmarks = faceLandmarks;
             FaceAttributes = faceAttributes;
@@ -48,6 +51,13 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face.Models
         /// </summary>
         [JsonProperty(PropertyName = "faceId")]
         public System.Guid? FaceId { get; set; }
+
+        /// <summary>
+        /// Gets or sets possible values include: 'recognition_v01',
+        /// 'recognition_v02'
+        /// </summary>
+        [JsonProperty(PropertyName = "RecognitionModel")]
+        public RecognitionModel RecognitionModel { get; set; }
 
         /// <summary>
         /// </summary>

@@ -858,6 +858,13 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// and emotion. Note that each face attribute analysis has additional
         /// computational and time cost.
         /// </param>
+        /// <param name='recognitionModel'>
+        /// Recognition model name. Recognition model is used when the face features
+        /// are extracted, so a recognition model version could be provided when
+        /// performing a Detection. If the user does not provide recognition model,
+        /// default is 'recognition_v01'. Possible values include: 'recognition_v01',
+        /// 'recognition_v02'
+        /// </param>
         /// <param name='customHeaders'>
         /// Headers that will be added to request.
         /// </param>
@@ -879,7 +886,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<IList<DetectedFace>>> DetectWithUrlWithHttpMessagesAsync(string url, bool? returnFaceId = true, bool? returnFaceLandmarks = false, IList<FaceAttributeType> returnFaceAttributes = default(IList<FaceAttributeType>), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<IList<DetectedFace>>> DetectWithUrlWithHttpMessagesAsync(string url, bool? returnFaceId = true, bool? returnFaceLandmarks = false, IList<FaceAttributeType> returnFaceAttributes = default(IList<FaceAttributeType>), RecognitionModel recognitionModel = default(RecognitionModel), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (Client.Endpoint == null)
             {
@@ -904,6 +911,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
                 tracingParameters.Add("returnFaceId", returnFaceId);
                 tracingParameters.Add("returnFaceLandmarks", returnFaceLandmarks);
                 tracingParameters.Add("returnFaceAttributes", returnFaceAttributes);
+                tracingParameters.Add("recognitionModel", recognitionModel);
                 tracingParameters.Add("imageUrl", imageUrl);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "DetectWithUrl", tracingParameters);
@@ -925,6 +933,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
             {
                 _queryParameters.Add(string.Format("returnFaceAttributes={0}", System.Uri.EscapeDataString(string.Join(",", returnFaceAttributes))));
             }
+            _queryParameters.Add(string.Format("RecognitionModel={0}", System.Uri.EscapeDataString(Rest.Serialization.SafeJsonConvert.SerializeObject(recognitionModel, Client.SerializationSettings).Trim('"'))));
             if (_queryParameters.Count > 0)
             {
                 _url += "?" + string.Join("&", _queryParameters);
@@ -1259,6 +1268,13 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// and emotion. Note that each face attribute analysis has additional
         /// computational and time cost.
         /// </param>
+        /// <param name='recognitionModel'>
+        /// Recognition model name. Recognition model is used when the face features
+        /// are extracted, so a recognition model version could be provided when
+        /// performing a Detection. If the user does not provide recognition model,
+        /// default is 'recognition_v01'. Possible values include: 'recognition_v01',
+        /// 'recognition_v02'
+        /// </param>
         /// <param name='customHeaders'>
         /// Headers that will be added to request.
         /// </param>
@@ -1280,7 +1296,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<IList<DetectedFace>>> DetectWithStreamWithHttpMessagesAsync(Stream image, bool? returnFaceId = true, bool? returnFaceLandmarks = false, IList<FaceAttributeType> returnFaceAttributes = default(IList<FaceAttributeType>), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<IList<DetectedFace>>> DetectWithStreamWithHttpMessagesAsync(Stream image, bool? returnFaceId = true, bool? returnFaceLandmarks = false, IList<FaceAttributeType> returnFaceAttributes = default(IList<FaceAttributeType>), RecognitionModel recognitionModel = default(RecognitionModel), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (Client.Endpoint == null)
             {
@@ -1301,6 +1317,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
                 tracingParameters.Add("returnFaceLandmarks", returnFaceLandmarks);
                 tracingParameters.Add("returnFaceAttributes", returnFaceAttributes);
                 tracingParameters.Add("image", image);
+                tracingParameters.Add("recognitionModel", recognitionModel);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "DetectWithStream", tracingParameters);
             }
@@ -1321,6 +1338,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
             {
                 _queryParameters.Add(string.Format("returnFaceAttributes={0}", System.Uri.EscapeDataString(string.Join(",", returnFaceAttributes))));
             }
+            _queryParameters.Add(string.Format("RecognitionModel={0}", System.Uri.EscapeDataString(Rest.Serialization.SafeJsonConvert.SerializeObject(recognitionModel, Client.SerializationSettings).Trim('"'))));
             if (_queryParameters.Count > 0)
             {
                 _url += "?" + string.Join("&", _queryParameters);
