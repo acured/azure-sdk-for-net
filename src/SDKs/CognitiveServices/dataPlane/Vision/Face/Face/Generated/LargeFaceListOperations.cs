@@ -51,8 +51,40 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         public FaceClient Client { get; private set; }
 
         /// <summary>
-        /// Create an empty large face list. Up to 64 large face lists are allowed to
-        /// exist in one subscription.
+        /// Create an empty large face list with user-specified largeFaceListId, name,
+        /// an optional userData and recognitionModel.
+        /// &lt;br /&gt; Large face list is a list of faces, up to 1,000,000 faces, and
+        /// used by [Face - Find
+        /// Similar](/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395237).
+        /// &lt;br /&gt; After creation, user should use [LargeFaceList Face -
+        /// Add](/docs/services/563879b61984550e40cbbe8d/operations/5a158c10d2de3616c086f2d3)
+        /// to import the faces and [LargeFaceList -
+        /// Train](/docs/services/563879b61984550e40cbbe8d/operations/5a158422d2de3616c086f2d1)
+        /// to make it ready for [Face -
+        /// FindSimilar](/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395237).
+        /// Faces are stored on server until [LargeFaceList -
+        /// Delete](/docs/services/563879b61984550e40cbbe8d/operations/5a1580d5d2de3616c086f2cd)
+        /// is called.
+        /// &lt;br /&gt; Find Similar is used for scenario like finding celebrity-like
+        /// faces, similar face filtering, or as a light way face identification. But
+        /// if the actual use is to identify person, please use
+        /// [PersonGroup](/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395244)
+        /// /
+        /// [LargePersonGroup](/docs/services/563879b61984550e40cbbe8d/operations/599acdee6ac60f11b48b5a9d)
+        /// and [Face -
+        /// Identify](/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395239).
+        /// &lt;br /&gt;
+        /// * Free-tier subscription quota: 64 large face lists.
+        /// * S0-tier subscription quota: 1,000,000 large face lists.
+        ///
+        /// 'recognitionModel' should be specified to associate with this large face
+        /// list. The default value for 'recognitionModel' is 'recognition_v01', if the
+        /// latest model needed, please explicitly specify the model you need in this
+        /// parameter. New faces that are added to an existing large face list will use
+        /// the recognition model that's already associated with the collection.
+        /// Existing face features in a large face list can't be updated to features
+        /// extracted by another version of recognition model.
+        ///
         /// </summary>
         /// <param name='largeFaceListId'>
         /// Id referencing a particular large face list.
@@ -84,7 +116,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse> CreateWithHttpMessagesAsync(string largeFaceListId, string name = default(string), string userData = default(string), RecognitionModel recognitionModel = default(RecognitionModel), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse> CreateWithHttpMessagesAsync(string largeFaceListId, string name = default(string), string userData = default(string), string recognitionModel = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (Client.Endpoint == null)
             {
@@ -120,7 +152,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
                 }
             }
             MetaDataContract body = new MetaDataContract();
-            if (name != null || userData != null)
+            if (name != null || userData != null || recognitionModel != null)
             {
                 body.Name = name;
                 body.UserData = userData;
@@ -232,7 +264,8 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         }
 
         /// <summary>
-        /// Retrieve a large face list's information.
+        /// Retrieve a large face list’s largeFaceListId, name, userData and
+        /// recognitionModel.
         /// </summary>
         /// <param name='largeFaceListId'>
         /// Id referencing a particular large face list.
@@ -880,8 +913,24 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         }
 
         /// <summary>
-        /// Retrieve information about all existing large face lists. Only
-        /// largeFaceListId, name and userData will be returned.
+        /// List large face lists’ information of largeFaceListId, name, userData and
+        /// recognitionModel. &lt;br /&gt;
+        /// To get face information inside largeFaceList use [LargeFaceList Face -
+        /// Get](/docs/services/563879b61984550e40cbbe8d/operations/5a158cf2d2de3616c086f2d5)
+        /// * Large face lists are stored in alphabetical order of largeFaceListId.
+        /// * "start" parameter (string, optional) is a user-provided largeFaceListId
+        /// value that returned entries have larger ids by string comparison. "start"
+        /// set to empty to indicate return from the first item.
+        /// * "top" parameter (int, optional) specifies the number of entries to
+        /// return. A maximal of 1000 entries can be returned in one call. To fetch
+        /// more, you can specify "start" with the last retuned entry’s Id of the
+        /// current call.
+        ///
+        /// For example, total 5 large person lists: "list1", ..., "list5".
+        /// &lt;br /&gt; "start=&amp;top=" will return all 5 lists.
+        /// &lt;br /&gt; "start=&amp;top=2" will return "list1", "list2".
+        /// &lt;br /&gt; "start=list2&amp;top=3" will return "list3", "list4", "list5".
+        ///
         /// </summary>
         /// <param name='customHeaders'>
         /// Headers that will be added to request.

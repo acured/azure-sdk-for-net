@@ -17,7 +17,7 @@ namespace FaceSDK.Tests
         // of Cognitive Service Face. We can leave it as `Guid.Empty` in the `playback` test mode.
         private static readonly List<Guid> ApplyScope = new List<Guid> { Guid.Empty };
 
-        private static readonly RecognitionModel recognitionModel = RecognitionModel.RecognitionV02;
+        private static readonly string recognitionModel = RecognitionModel.RecognitionV02;
 
         [Fact]
         public void FaceSnapshotTestFaceList()

@@ -42,7 +42,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face.Models
         /// 'recognition_v01', 'recognition_v02'</param>
         /// <param name="persistedFaces">Persisted faces within the face
         /// list.</param>
-        public FaceList(string faceListId, string name = default(string), string userData = default(string), RecognitionModel recognitionModel = default(RecognitionModel), IList<PersistedFace> persistedFaces = default(IList<PersistedFace>))
+        public FaceList(string faceListId, string name = default(string), string userData = default(string), string recognitionModel = default(string), IList<PersistedFace> persistedFaces = default(IList<PersistedFace>))
             : base(name, userData, recognitionModel)
         {
             FaceListId = faceListId;

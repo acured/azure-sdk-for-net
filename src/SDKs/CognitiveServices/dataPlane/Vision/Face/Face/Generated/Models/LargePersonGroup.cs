@@ -38,7 +38,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face.Models
         /// exceed 16KB.</param>
         /// <param name="recognitionModel">Possible values include:
         /// 'recognition_v01', 'recognition_v02'</param>
-        public LargePersonGroup(string largePersonGroupId, string name = default(string), string userData = default(string), RecognitionModel recognitionModel = default(RecognitionModel))
+        public LargePersonGroup(string largePersonGroupId, string name = default(string), string userData = default(string), string recognitionModel = default(string))
             : base(name, userData, recognitionModel)
         {
             LargePersonGroupId = largePersonGroupId;

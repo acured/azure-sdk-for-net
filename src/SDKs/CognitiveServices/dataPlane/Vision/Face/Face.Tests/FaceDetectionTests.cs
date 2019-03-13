@@ -10,7 +10,7 @@ namespace FaceSDK.Tests
 {
     public class FaceDetectionTests : BaseTests
     {
-        private static readonly RecognitionModel recognitionModel = RecognitionModel.RecognitionV02;
+        private static readonly string recognitionModel = RecognitionModel.RecognitionV02;
 
         [Fact]
         public void FaceDetectionWithAttributes()

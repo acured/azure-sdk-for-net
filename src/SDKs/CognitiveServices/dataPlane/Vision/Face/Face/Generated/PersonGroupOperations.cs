@@ -51,8 +51,38 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         public FaceClient Client { get; private set; }
 
         /// <summary>
-        /// Create a new person group with specified personGroupId, name and
-        /// user-provided userData.
+        /// Create a new person group with specified personGroupId, name, user-provided
+        /// userData and recognitionModel.
+        /// &lt;br /&gt; A person group is the container of the uploaded person data,
+        /// including face images and face recognition features.
+        /// &lt;br /&gt; After creation, use [PersonGroup Person -
+        /// Create](/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f3039523c)
+        /// to add persons into the group, and then call [PersonGroup -
+        /// Train](/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395249)
+        /// to get this group ready for [Face -
+        /// Identify](/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395239).
+        /// &lt;br /&gt; The person's face, image, and userData will be stored on
+        /// server until [PersonGroup Person -
+        /// Delete](/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f3039523d)
+        /// or [PersonGroup -
+        /// Delete](/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395245)
+        /// is called.
+        /// &lt;br /&gt;
+        /// * Free-tier subscription quota: 1,000 person groups. Each holds up to 1,000
+        /// persons.
+        /// * S0-tier subscription quota: 1,000,000 person groups. Each holds up to
+        /// 10,000 persons.
+        /// * to handle larger scale face identification problem, please consider using
+        /// [LargePersonGroup](/docs/services/563879b61984550e40cbbe8d/operations/599acdee6ac60f11b48b5a9d).
+        ///
+        /// 'recognitionModel' should be specified to associate with this person group.
+        /// The default value for 'recognitionModel' is 'recognition_v01', if the
+        /// latest model needed, please explicitly specify the model you need in this
+        /// parameter. New faces that are added to an existing person group will use
+        /// the recognition model that's already associated with the collection.
+        /// Existing face features in a person group can't be updated to features
+        /// extracted by another version of recognition model.
+        ///
         /// </summary>
         /// <param name='personGroupId'>
         /// Id referencing a particular person group.
@@ -84,7 +114,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse> CreateWithHttpMessagesAsync(string personGroupId, string name = default(string), string userData = default(string), RecognitionModel recognitionModel = default(RecognitionModel), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse> CreateWithHttpMessagesAsync(string personGroupId, string name = default(string), string userData = default(string), string recognitionModel = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (Client.Endpoint == null)
             {
@@ -120,7 +150,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
                 }
             }
             MetaDataContract body = new MetaDataContract();
-            if (name != null || userData != null)
+            if (name != null || userData != null || recognitionModel != null)
             {
                 body.Name = name;
                 body.UserData = userData;
@@ -376,8 +406,9 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         }
 
         /// <summary>
-        /// Retrieve the information of a person group, including its name and
-        /// userData.
+        /// Retrieve person group name, userData and recognitionModel. To get person
+        /// information under this personGroup, use [PersonGroup Person -
+        /// List](/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395241).
         /// </summary>
         /// <param name='personGroupId'>
         /// Id referencing a particular person group.
@@ -882,7 +913,22 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         }
 
         /// <summary>
-        /// List person groups and their information.
+        /// List person groups’s pesonGroupId, name, userData and recognitionModel.
+        /// * Person groups are stored in alphabetical order of personGroupId.
+        /// * "start" parameter (string, optional) is a user-provided personGroupId
+        /// value that returned entries have larger ids by string comparison. "start"
+        /// set to empty to indicate return from the first item.
+        /// * "top" parameter (int, optional) specifies the number of entries to
+        /// return. A maximal of 1000 entries can be returned in one call. To fetch
+        /// more, you can specify "start" with the last retuned entry’s Id of the
+        /// current call.
+        ///
+        /// For example, total 5 person groups: "group1", ..., "group5".
+        /// &lt;br /&gt; "start=&amp;top=" will return all 5 groups.
+        /// &lt;br /&gt; "start=&amp;top=2" will return "group1", "group2".
+        /// &lt;br /&gt; "start=group2&amp;top=3" will return "group3", "group4",
+        /// "group5".
+        ///
         /// </summary>
         /// <param name='start'>
         /// List person groups from the least personGroupId greater than the "start".

@@ -37,7 +37,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face.Models
         /// exceed 16KB.</param>
         /// <param name="recognitionModel">Possible values include:
         /// 'recognition_v01', 'recognition_v02'</param>
-        public MetaDataContract(string name = default(string), string userData = default(string), RecognitionModel recognitionModel = default(RecognitionModel))
+        public MetaDataContract(string name = default(string), string userData = default(string), string recognitionModel = default(string))
             : base(name, userData)
         {
             RecognitionModel = recognitionModel;
@@ -53,8 +53,8 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face.Models
         /// Gets or sets possible values include: 'recognition_v01',
         /// 'recognition_v02'
         /// </summary>
-        [JsonProperty(PropertyName = "RecognitionModel")]
-        public RecognitionModel RecognitionModel { get; set; }
+        [JsonProperty(PropertyName = "recognitionModel")]
+        public string RecognitionModel { get; set; }
 
         /// <summary>
         /// Validate the object.

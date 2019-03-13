@@ -51,8 +51,36 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         public FaceClient Client { get; private set; }
 
         /// <summary>
-        /// Create an empty face list. Up to 64 face lists are allowed to exist in one
+        /// Create an empty face list with user-specified faceListId, name, an optional
+        /// userData and recognitionModel. Up to 64 face lists are allowed in one
         /// subscription.
+        /// &lt;br /&gt; Face list is a list of faces, up to 1,000 faces, and used by
+        /// [Face - Find
+        /// Similar](/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395237).
+        /// &lt;br /&gt; After creation, user should use [FaceList - Add
+        /// Face](/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395250)
+        /// to import the faces. Faces are stored on server until [FaceList -
+        /// Delete](/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f3039524f)
+        /// is called.
+        /// &lt;br /&gt; Find Similar is used for scenario like finding celebrity-like
+        /// faces, similar face filtering, or as a light way face identification. But
+        /// if the actual use is to identify person, please use
+        /// [PersonGroup](/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395244)
+        /// /
+        /// [LargePersonGroup](/docs/services/563879b61984550e40cbbe8d/operations/599acdee6ac60f11b48b5a9d)
+        /// and [Face -
+        /// Identify](/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395239).
+        /// &lt;br /&gt; Please consider
+        /// [LargeFaceList](/docs/services/563879b61984550e40cbbe8d/operations/5a157b68d2de3616c086f2cc)
+        /// when the face number is large. It can support up to 1,000,000 faces.
+        /// 'recognitionModel' should be specified to associate with this face list.
+        /// The default value for 'recognitionModel' is 'recognition_v01', if the
+        /// latest model needed, please explicitly specify the model you need in this
+        /// parameter. New faces that are added to an existing face list will use the
+        /// recognition model that's already associated with the collection. Existing
+        /// face features in a face list can't be updated to features extracted by
+        /// another version of recognition model.
+        ///
         /// </summary>
         /// <param name='faceListId'>
         /// Id referencing a particular face list.
@@ -84,7 +112,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse> CreateWithHttpMessagesAsync(string faceListId, string name = default(string), string userData = default(string), RecognitionModel recognitionModel = default(RecognitionModel), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse> CreateWithHttpMessagesAsync(string faceListId, string name = default(string), string userData = default(string), string recognitionModel = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (Client.Endpoint == null)
             {
@@ -120,7 +148,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
                 }
             }
             MetaDataContract body = new MetaDataContract();
-            if (name != null || userData != null)
+            if (name != null || userData != null || recognitionModel != null)
             {
                 body.Name = name;
                 body.UserData = userData;
@@ -232,7 +260,9 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         }
 
         /// <summary>
-        /// Retrieve a face list's information.
+        /// Retrieve a face list’s faceListId, name, userData, recognitionModel and
+        /// faces in the face list.
+        ///
         /// </summary>
         /// <param name='faceListId'>
         /// Id referencing a particular face list.
@@ -716,8 +746,11 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         }
 
         /// <summary>
-        /// Retrieve information about all existing face lists. Only faceListId, name
-        /// and userData will be returned.
+        /// List face lists’ faceListId, name, userData and recognitionModel. &lt;br
+        /// /&gt;
+        /// To get face information inside faceList use [FaceList -
+        /// Get](/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f3039524c)
+        ///
         /// </summary>
         /// <param name='customHeaders'>
         /// Headers that will be added to request.
