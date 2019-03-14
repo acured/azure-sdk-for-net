@@ -47,7 +47,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// &lt;br /&gt;
         /// 'recognitionModel' should be specified to associate with this large
         /// person group. The default value for 'recognitionModel' is
-        /// 'recognition_v01', if the latest model needed, please explicitly
+        /// 'recognition_01', if the latest model needed, please explicitly
         /// specify the model you need in this parameter. New faces that are
         /// added to an existing large person group will use the recognition
         /// model that's already associated with the collection. Existing face
@@ -65,7 +65,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// User specified data. Length should not exceed 16KB.
         /// </param>
         /// <param name='recognitionModel'>
-        /// Possible values include: 'recognition_v01', 'recognition_v02'
+        /// Possible values include: 'recognition_01', 'recognition_02'
         /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.

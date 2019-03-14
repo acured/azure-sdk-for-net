@@ -270,7 +270,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
             /// * Different 'recognitionModel' values are provided. If follow-up operations
             /// like Verify, Identify, Find Similar are needed, please specify the
             /// recognition model with 'recognitionModel' parameter. The default value for
-            /// 'recognitionModel' is 'recognition_v01', if latest model needed, please
+            /// 'recognitionModel' is 'recognition_01', if latest model needed, please
             /// explicitly specify the model you need in this parameter. Once specified,
             /// the detected faceIds will be associated with the specified recognition
             /// model. More details, please refer to [How to specify a recognition
@@ -303,9 +303,9 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
             /// are extracted and associated with detected faceIds, (Large)FaceList or
             /// (Large)PersonGroup. A recognition model name can be provided when
             /// performing Face - Detect or (Large)FaceList - Create or (Large)PersonGroup
-            /// - Create. The default value is 'recognition_v01', if latest model needed,
+            /// - Create. The default value is 'recognition_01', if latest model needed,
             /// please explicitly specify the model you need. Possible values include:
-            /// 'recognition_v01', 'recognition_v02'
+            /// 'recognition_01', 'recognition_02'
             /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.
@@ -386,9 +386,9 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
             /// are extracted and associated with detected faceIds, (Large)FaceList or
             /// (Large)PersonGroup. A recognition model name can be provided when
             /// performing Face - Detect or (Large)FaceList - Create or (Large)PersonGroup
-            /// - Create. The default value is 'recognition_v01', if latest model needed,
+            /// - Create. The default value is 'recognition_01', if latest model needed,
             /// please explicitly specify the model you need. Possible values include:
-            /// 'recognition_v01', 'recognition_v02'
+            /// 'recognition_01', 'recognition_02'
             /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.

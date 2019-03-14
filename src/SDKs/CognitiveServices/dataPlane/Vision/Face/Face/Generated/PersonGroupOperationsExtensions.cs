@@ -47,8 +47,8 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
             /// [LargePersonGroup](/docs/services/563879b61984550e40cbbe8d/operations/599acdee6ac60f11b48b5a9d).
             /// &lt;br /&gt;
             /// 'recognitionModel' should be specified to associate with this person group.
-            /// The default value for 'recognitionModel' is 'recognition_v01', if the
-            /// latest model needed, please explicitly specify the model you need in this
+            /// The default value for 'recognitionModel' is 'recognition_01', if the latest
+            /// model needed, please explicitly specify the model you need in this
             /// parameter. New faces that are added to an existing person group will use
             /// the recognition model that's already associated with the collection.
             /// Existing face features in a person group can't be updated to features
@@ -68,7 +68,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
             /// User specified data. Length should not exceed 16KB.
             /// </param>
             /// <param name='recognitionModel'>
-            /// Possible values include: 'recognition_v01', 'recognition_v02'
+            /// Possible values include: 'recognition_01', 'recognition_02'
             /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.

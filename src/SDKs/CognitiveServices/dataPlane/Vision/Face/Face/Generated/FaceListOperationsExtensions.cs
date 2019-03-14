@@ -46,8 +46,8 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
             /// [LargeFaceList](/docs/services/563879b61984550e40cbbe8d/operations/5a157b68d2de3616c086f2cc)
             /// when the face number is large. It can support up to 1,000,000 faces.
             /// 'recognitionModel' should be specified to associate with this face list.
-            /// The default value for 'recognitionModel' is 'recognition_v01', if the
-            /// latest model needed, please explicitly specify the model you need in this
+            /// The default value for 'recognitionModel' is 'recognition_01', if the latest
+            /// model needed, please explicitly specify the model you need in this
             /// parameter. New faces that are added to an existing face list will use the
             /// recognition model that's already associated with the collection. Existing
             /// face features in a face list can't be updated to features extracted by
@@ -67,7 +67,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
             /// User specified data. Length should not exceed 16KB.
             /// </param>
             /// <param name='recognitionModel'>
-            /// Possible values include: 'recognition_v01', 'recognition_v02'
+            /// Possible values include: 'recognition_01', 'recognition_02'
             /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.

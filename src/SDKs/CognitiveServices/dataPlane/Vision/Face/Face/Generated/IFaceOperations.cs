@@ -290,7 +290,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// * Different 'recognitionModel' values are provided. If follow-up
         /// operations like Verify, Identify, Find Similar are needed, please
         /// specify the recognition model with 'recognitionModel' parameter.
-        /// The default value for 'recognitionModel' is 'recognition_v01', if
+        /// The default value for 'recognitionModel' is 'recognition_01', if
         /// latest model needed, please explicitly specify the model you need
         /// in this parameter. Once specified, the detected faceIds will be
         /// associated with the specified recognition model. More details,
@@ -322,9 +322,9 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// (Large)FaceList or (Large)PersonGroup. A recognition model name can
         /// be provided when performing Face - Detect or (Large)FaceList -
         /// Create or (Large)PersonGroup - Create. The default value is
-        /// 'recognition_v01', if latest model needed, please explicitly
-        /// specify the model you need. Possible values include:
-        /// 'recognition_v01', 'recognition_v02'
+        /// 'recognition_01', if latest model needed, please explicitly specify
+        /// the model you need. Possible values include: 'recognition_01',
+        /// 'recognition_02'
         /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
@@ -410,9 +410,9 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// (Large)FaceList or (Large)PersonGroup. A recognition model name can
         /// be provided when performing Face - Detect or (Large)FaceList -
         /// Create or (Large)PersonGroup - Create. The default value is
-        /// 'recognition_v01', if latest model needed, please explicitly
-        /// specify the model you need. Possible values include:
-        /// 'recognition_v01', 'recognition_v02'
+        /// 'recognition_01', if latest model needed, please explicitly specify
+        /// the model you need. Possible values include: 'recognition_01',
+        /// 'recognition_02'
         /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.

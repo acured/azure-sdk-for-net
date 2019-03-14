@@ -16,7 +16,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face.Models
     /// </summary>
     public static class RecognitionModel
     {
-        public const string RecognitionV01 = "recognition_v01";
-        public const string RecognitionV02 = "recognition_v02";
+        public const string Recognition01 = "recognition_01";
+        public const string Recognition02 = "recognition_02";
     }
 }
