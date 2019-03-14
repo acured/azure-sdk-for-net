@@ -44,7 +44,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// &lt;br /&gt;
         /// * Free-tier subscription quota: 1,000 large person groups.
         /// * S0-tier subscription quota: 1,000,000 large person groups.
-        ///
+        /// &lt;br /&gt;
         /// 'recognitionModel' should be specified to associate with this large
         /// person group. The default value for 'recognitionModel' is
         /// 'recognition_v01', if the latest model needed, please explicitly
@@ -180,7 +180,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         Task<HttpOperationResponse<TrainingStatus>> GetTrainingStatusWithHttpMessagesAsync(string largePersonGroupId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// List all existing large person groups’s largePesonGroupId, name,
-        /// userData and recognitionModel.
+        /// userData and recognitionModel.&lt;br /&gt;
         /// * Large person groups are stored in alphabetical order of
         /// largePersonGroupId.
         /// * "start" parameter (string, optional) is a user-provided
@@ -191,7 +191,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// to return. A maximal of 1000 entries can be returned in one call.
         /// To fetch more, you can specify "start" with the last retuned
         /// entry’s Id of the current call.
-        ///
+        /// &lt;br /&gt;
         /// For example, total 5 large person groups: "group1", ..., "group5".
         /// &lt;br /&gt; "start=&amp;top=" will return all 5 groups.
         /// &lt;br /&gt; "start=&amp;top=2" will return "group1", "group2".

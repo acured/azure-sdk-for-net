@@ -50,7 +50,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// &lt;br /&gt;
         /// * Free-tier subscription quota: 64 large face lists.
         /// * S0-tier subscription quota: 1,000,000 large face lists.
-        ///
+        /// &lt;br /&gt;
         /// 'recognitionModel' should be specified to associate with this large
         /// face list. The default value for 'recognitionModel' is
         /// 'recognition_v01', if the latest model needed, please explicitly
@@ -182,7 +182,8 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// userData and recognitionModel. &lt;br /&gt;
         /// To get face information inside largeFaceList use [LargeFaceList
         /// Face -
-        /// Get](/docs/services/563879b61984550e40cbbe8d/operations/5a158cf2d2de3616c086f2d5)
+        /// Get](/docs/services/563879b61984550e40cbbe8d/operations/5a158cf2d2de3616c086f2d5)&lt;br
+        /// /&gt;
         /// * Large face lists are stored in alphabetical order of
         /// largeFaceListId.
         /// * "start" parameter (string, optional) is a user-provided
@@ -193,7 +194,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// to return. A maximal of 1000 entries can be returned in one call.
         /// To fetch more, you can specify "start" with the last retuned
         /// entry’s Id of the current call.
-        ///
+        /// &lt;br /&gt;
         /// For example, total 5 large person lists: "list1", ..., "list5".
         /// &lt;br /&gt; "start=&amp;top=" will return all 5 lists.
         /// &lt;br /&gt; "start=&amp;top=2" will return "list1", "list2".

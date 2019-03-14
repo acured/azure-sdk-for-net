@@ -64,8 +64,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// containing persistedFaceIds that will also not expire. Depending on the
         /// input the returned similar faces list contains faceIds or persistedFaceIds
         /// ranked by similarity.
-        /// &lt;br/&gt;
-        /// &lt;br/&gt; Find similar has two working modes, "matchPerson" and
+        /// &lt;br/&gt;Find similar has two working modes, "matchPerson" and
         /// "matchFace". "matchPerson" is the default mode that it tries to find faces
         /// of the same person as possible by using internal same-person thresholds. It
         /// is useful to find a known person's other photos. Note that an empty list
@@ -73,7 +72,6 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// ignores same-person thresholds and returns ranked similar faces anyway,
         /// even the similarity is low. It can be used in the cases like searching
         /// celebrity-looking faces.
-        /// &lt;br/&gt;
         /// &lt;br/&gt;The 'recognitionModel' associated with the query face's faceId
         /// should be the same as the 'recognitionModel' used by the target faceId
         /// array, face list or large face list.
@@ -305,7 +303,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         }
 
         /// <summary>
-        /// Divide candidate faces into groups based on face similarity.
+        /// Divide candidate faces into groups based on face similarity.&lt;br /&gt;
         /// * The output is one or more disjointed face groups and a messyGroup. A face
         /// group contains faces that have similar looking, often of the same person.
         /// Face groups are ranked by group size, i.e. number of faces. Notice that
@@ -504,7 +502,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// Train](/docs/services/563879b61984550e40cbbe8d/operations/599ae2d16ac60f11b48b5aa4).
         /// &lt;br/&gt;
         ///
-        /// Remarks:
+        /// Remarks:&lt;br /&gt;
         /// * The algorithm allows more than one face to be identified independently at
         /// the same request, but no more than 10 faces.
         /// * Each person in the person group/large person group could have more than
@@ -749,7 +747,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// Verify whether two faces belong to a same person or whether one face
         /// belongs to a person.
         /// &lt;br/&gt;
-        /// Remarks:
+        /// Remarks:&lt;br /&gt;
         /// * Higher face image quality means better identification precision. Please
         /// consider high-quality faces: frontal, clear, and face size is 200x200
         /// pixels (100 pixels between eyes) or bigger.
@@ -919,7 +917,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
 
         /// <summary>
         /// Detect human faces in an image, return face rectangles, and optionally with
-        /// faceIds, landmarks, and attributes.
+        /// faceIds, landmarks, and attributes.&lt;br /&gt;
         /// * Optional parameters including faceId, landmarks, and attributes.
         /// Attributes include age, gender, headPose, smile, facialHair, glasses,
         /// emotion, hair, makeup, occlusion, accessories, blur, exposure and noise.
@@ -955,7 +953,8 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// 'recognitionModel' is 'recognition_v01', if latest model needed, please
         /// explicitly specify the model you need in this parameter. Once specified,
         /// the detected faceIds will be associated with the specified recognition
-        /// model. More details, please refer to [How to specify a recognition model]()
+        /// model. More details, please refer to [How to specify a recognition
+        /// model](https://docs.microsoft.com/en-us/azure/cognitive-services/face/face-api-how-to-topics/specify-recognition-model)
         ///
         /// </summary>
         /// <param name='url'>
@@ -977,12 +976,13 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// computational and time cost.
         /// </param>
         /// <param name='recognitionModel'>
-        /// Recognition model name. Recognition model is used when the face features
-        /// are extracted and associated with (Large)FaceList or (Large)PersonGroup. So
-        /// a recognition model version could be provided when performing a Detection
-        /// and create (Large)FaceList or (Large)PersonGroup create. If the user does
-        /// not provide recognition model, default is 'recognition_v01'. Possible
-        /// values include: 'recognition_v01', 'recognition_v02'
+        /// Name of recognition model. Recognition model is used when the face features
+        /// are extracted and associated with detected faceIds, (Large)FaceList or
+        /// (Large)PersonGroup. A recognition model name can be provided when
+        /// performing Face - Detect or (Large)FaceList - Create or (Large)PersonGroup
+        /// - Create. The default value is 'recognition_v01', if latest model needed,
+        /// please explicitly specify the model you need. Possible values include:
+        /// 'recognition_v01', 'recognition_v02'
         /// </param>
         /// <param name='customHeaders'>
         /// Headers that will be added to request.
@@ -1054,7 +1054,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
             }
             if (recognitionModel != null)
             {
-                _queryParameters.Add(string.Format("RecognitionModel={0}", System.Uri.EscapeDataString(recognitionModel)));
+                _queryParameters.Add(string.Format("recognitionModel={0}", System.Uri.EscapeDataString(recognitionModel)));
             }
             if (_queryParameters.Count > 0)
             {
@@ -1391,12 +1391,13 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// computational and time cost.
         /// </param>
         /// <param name='recognitionModel'>
-        /// Recognition model name. Recognition model is used when the face features
-        /// are extracted and associated with (Large)FaceList or (Large)PersonGroup. So
-        /// a recognition model version could be provided when performing a Detection
-        /// and create (Large)FaceList or (Large)PersonGroup create. If the user does
-        /// not provide recognition model, default is 'recognition_v01'. Possible
-        /// values include: 'recognition_v01', 'recognition_v02'
+        /// Name of recognition model. Recognition model is used when the face features
+        /// are extracted and associated with detected faceIds, (Large)FaceList or
+        /// (Large)PersonGroup. A recognition model name can be provided when
+        /// performing Face - Detect or (Large)FaceList - Create or (Large)PersonGroup
+        /// - Create. The default value is 'recognition_v01', if latest model needed,
+        /// please explicitly specify the model you need. Possible values include:
+        /// 'recognition_v01', 'recognition_v02'
         /// </param>
         /// <param name='customHeaders'>
         /// Headers that will be added to request.
@@ -1463,7 +1464,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
             }
             if (recognitionModel != null)
             {
-                _queryParameters.Add(string.Format("RecognitionModel={0}", System.Uri.EscapeDataString(recognitionModel)));
+                _queryParameters.Add(string.Format("recognitionModel={0}", System.Uri.EscapeDataString(recognitionModel)));
             }
             if (_queryParameters.Count > 0)
             {

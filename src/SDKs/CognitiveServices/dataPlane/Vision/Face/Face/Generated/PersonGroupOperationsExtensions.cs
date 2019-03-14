@@ -45,7 +45,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
             /// 10,000 persons.
             /// * to handle larger scale face identification problem, please consider using
             /// [LargePersonGroup](/docs/services/563879b61984550e40cbbe8d/operations/599acdee6ac60f11b48b5a9d).
-            ///
+            /// &lt;br /&gt;
             /// 'recognitionModel' should be specified to associate with this person group.
             /// The default value for 'recognitionModel' is 'recognition_v01', if the
             /// latest model needed, please explicitly specify the model you need in this
@@ -163,7 +163,8 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
             }
 
             /// <summary>
-            /// List person groups’s pesonGroupId, name, userData and recognitionModel.
+            /// List person groups’s pesonGroupId, name, userData and
+            /// recognitionModel.&lt;br /&gt;
             /// * Person groups are stored in alphabetical order of personGroupId.
             /// * "start" parameter (string, optional) is a user-provided personGroupId
             /// value that returned entries have larger ids by string comparison. "start"
@@ -172,7 +173,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
             /// return. A maximal of 1000 entries can be returned in one call. To fetch
             /// more, you can specify "start" with the last retuned entry’s Id of the
             /// current call.
-            ///
+            /// &lt;br /&gt;
             /// For example, total 5 person groups: "group1", ..., "group5".
             /// &lt;br /&gt; "start=&amp;top=" will return all 5 groups.
             /// &lt;br /&gt; "start=&amp;top=2" will return "group1", "group2".
