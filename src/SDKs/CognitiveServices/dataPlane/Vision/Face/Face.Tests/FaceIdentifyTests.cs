@@ -12,7 +12,7 @@ namespace FaceSDK.Tests
 {
     public class FaceIdentifyTests : BaseTests
     {
-        private static readonly string recognitionModel = RecognitionModel.RecognitionV02;
+        private static readonly string recognitionModel = RecognitionModel.Recognition02;
 
         [Fact]
         public void FaceIdentificationPersonGroupPositive()
