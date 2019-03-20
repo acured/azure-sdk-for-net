@@ -43,7 +43,8 @@ namespace FaceSDK.Tests
                             FaceAttributeType.Occlusion,
                             FaceAttributeType.Smile
                             },
-                        recognitionModel: recognitionModel
+                        recognitionModel: recognitionModel,
+                        returnRecognitionModel: true
                         ).Result;
 
                     Assert.Equal(1, faceList.Count);
@@ -138,6 +139,9 @@ namespace FaceSDK.Tests
                     Assert.True(landMarks.UnderLipTop.Y > 0);
                     Assert.True(landMarks.UnderLipBottom.X > 0);
                     Assert.True(landMarks.UnderLipBottom.Y > 0);
+
+                    // Ensure recognitionModel return correctly.
+                    Assert.Equal(face.RecognitionModel, recognitionModel);
                 }
             }
         }
