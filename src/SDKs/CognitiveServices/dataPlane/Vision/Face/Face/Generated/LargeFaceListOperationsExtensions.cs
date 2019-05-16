@@ -32,10 +32,9 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
             /// Add](/docs/services/563879b61984550e40cbbe8d/operations/5a158c10d2de3616c086f2d3)
             /// to import the faces and [LargeFaceList -
             /// Train](/docs/services/563879b61984550e40cbbe8d/operations/5a158422d2de3616c086f2d1)
-            /// to make it ready for [Face - Find
-            /// Similar](/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395237).
-            /// No image will be stored. Only the extracted face features are stored on
-            /// server until [LargeFaceList -
+            /// to make it ready for [Face -
+            /// FindSimilar](/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395237).
+            /// Faces are stored on server until [LargeFaceList -
             /// Delete](/docs/services/563879b61984550e40cbbe8d/operations/5a1580d5d2de3616c086f2cd)
             /// is called.
             /// &lt;br /&gt; Find Similar is used for scenario like finding celebrity-like
@@ -46,24 +45,18 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
             /// [LargePersonGroup](/docs/services/563879b61984550e40cbbe8d/operations/599acdee6ac60f11b48b5a9d)
             /// and [Face -
             /// Identify](/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395239).
-            /// &lt;br/&gt;'recognitionModel' should be specified to associate with this
-            /// large face list. The default value for 'recognitionModel' is
-            /// 'recognition_01', if the latest model needed, please explicitly specify the
-            /// model you need in this parameter. New faces that are added to an existing
-            /// large face list will use the recognition model that's already associated
-            /// with the collection. Existing face features in a large face list can't be
-            /// updated to features extracted by another version of recognition model.
-            /// * 'recognition_01': The default recognition model for [LargeFaceList-
-            /// Create](/docs/services/563879b61984550e40cbbe8d/operations/5a157b68d2de3616c086f2cc).
-            /// All those large face lists created before 2019 March are bonded with this
-            /// recognition model.
-            /// * 'recognition_02': Recognition model released in 2019 March.
-            /// 'recognition_02' is recommended since its overall accuracy is improved
-            /// compared with 'recognition_01'.
-            ///
-            /// Large face list quota:
+            /// &lt;br /&gt;
             /// * Free-tier subscription quota: 64 large face lists.
             /// * S0-tier subscription quota: 1,000,000 large face lists.
+            /// &lt;br /&gt;
+            /// 'recognitionModel' should be specified to associate with this large face
+            /// list. The default value for 'recognitionModel' is 'recognition_01', if the
+            /// latest model needed, please explicitly specify the model you need in this
+            /// parameter. New faces that are added to an existing large face list will use
+            /// the recognition model that's already associated with the collection.
+            /// Existing face features in a large face list can't be updated to features
+            /// extracted by another version of recognition model.
+            ///
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -137,7 +130,8 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
             }
 
             /// <summary>
-            /// Delete a specified large face list.
+            /// Delete an existing large face list according to faceListId. Persisted face
+            /// images in the large face list will also be deleted.
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -231,11 +225,9 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
             }
 
             /// <summary>
-            /// Delete a face from a large face list by specified largeFaceListId and
-            /// persistedFaceId.
-            /// &lt;br /&gt; Adding/deleting faces to/from a same large face list are
-            /// processed sequentially and to/from different large face lists are in
-            /// parallel.
+            /// Delete an existing face from a large face list (given by a persistedFaceId
+            /// and a largeFaceListId). Persisted image related to the face will also be
+            /// deleted.
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -302,37 +294,9 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
             }
 
             /// <summary>
-            /// Add a face to a specified large face list, up to 1,000,000 faces.
-            /// &lt;br /&gt; To deal with an image contains multiple faces, input face can
-            /// be specified as an image with a targetFace rectangle. It returns a
-            /// persistedFaceId representing the added face. No image will be stored. Only
-            /// the extracted face feature will be stored on server until [LargeFaceList
-            /// Face -
-            /// Delete](/docs/services/563879b61984550e40cbbe8d/operations/5a158c8ad2de3616c086f2d4)
-            /// or [LargeFaceList -
-            /// Delete](/docs/services/563879b61984550e40cbbe8d/operations/5a1580d5d2de3616c086f2cd)
-            /// is called.
-            /// &lt;br /&gt; Note persistedFaceId is different from faceId generated by
-            /// [Face -
-            /// Detect](/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395236).
-            /// * Higher face image quality means better recognition precision. Please
-            /// consider high-quality faces: frontal, clear, and face size is 200x200
-            /// pixels (100 pixels between eyes) or bigger.
-            /// * JPEG, PNG, GIF (the first frame), and BMP format are supported. The
-            /// allowed image file size is from 1KB to 6MB.
-            /// * "targetFace" rectangle should contain one face. Zero or multiple faces
-            /// will be regarded as an error. If the provided "targetFace" rectangle is not
-            /// returned from [Face -
-            /// Detect](/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395236),
-            /// there’s no guarantee to detect and add the face successfully.
-            /// * Out of detectable face size (36x36 - 4096x4096 pixels), large head-pose,
-            /// or large occlusions will cause failures.
-            /// * Adding/deleting faces to/from a same face list are processed sequentially
-            /// and to/from different face lists are in parallel.
-            ///
-            /// Quota:
-            /// * Free-tier subscription quota: 1,000 faces per large face list.
-            /// * S0-tier subscription quota: 1,000,000 faces per large face list.
+            /// Add a face to a large face list. The input face is specified as an image
+            /// with a targetFace rectangle. It returns a persistedFaceId representing the
+            /// added face, and persistedFaceId will not expire.
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -354,12 +318,20 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
             /// targetFace is required to specify which face to add. No targetFace means
             /// there is only one face detected in the entire image.
             /// </param>
+            /// <param name='detectionModel'>
+            /// Name of detection model. Detection model is used to detect faces from
+            /// images. A detection model name can be provided when performing Face -
+            /// Detect or (Large)FaceList - AddFace or (Large)PersonGroupPerson - AddFace.
+            /// The default value is 'detection_01', if latest model needed, please
+            /// explicitly specify the model you need. Possible values include:
+            /// 'detection_01', 'detection_02'
+            /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<PersistedFace> AddFaceFromUrlAsync(this ILargeFaceListOperations operations, string largeFaceListId, string url, string userData = default(string), IList<int> targetFace = default(IList<int>), CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<PersistedFace> AddFaceFromUrlAsync(this ILargeFaceListOperations operations, string largeFaceListId, string url, string userData = default(string), IList<int> targetFace = default(IList<int>), string detectionModel = default(string), CancellationToken cancellationToken = default(CancellationToken))
             {
-                using (var _result = await operations.AddFaceFromUrlWithHttpMessagesAsync(largeFaceListId, url, userData, targetFace, null, cancellationToken).ConfigureAwait(false))
+                using (var _result = await operations.AddFaceFromUrlWithHttpMessagesAsync(largeFaceListId, url, userData, targetFace, detectionModel, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }
@@ -418,12 +390,20 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
             /// targetFace is required to specify which face to add. No targetFace means
             /// there is only one face detected in the entire image.
             /// </param>
+            /// <param name='detectionModel'>
+            /// Name of detection model. Detection model is used to detect faces from
+            /// images. A detection model name can be provided when performing Face -
+            /// Detect or (Large)FaceList - AddFace or (Large)PersonGroupPerson - AddFace.
+            /// The default value is 'detection_01', if latest model needed, please
+            /// explicitly specify the model you need. Possible values include:
+            /// 'detection_01', 'detection_02'
+            /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<PersistedFace> AddFaceFromStreamAsync(this ILargeFaceListOperations operations, string largeFaceListId, Stream image, string userData = default(string), IList<int> targetFace = default(IList<int>), CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<PersistedFace> AddFaceFromStreamAsync(this ILargeFaceListOperations operations, string largeFaceListId, Stream image, string userData = default(string), IList<int> targetFace = default(IList<int>), string detectionModel = default(string), CancellationToken cancellationToken = default(CancellationToken))
             {
-                using (var _result = await operations.AddFaceFromStreamWithHttpMessagesAsync(largeFaceListId, image, userData, targetFace, null, cancellationToken).ConfigureAwait(false))
+                using (var _result = await operations.AddFaceFromStreamWithHttpMessagesAsync(largeFaceListId, image, userData, targetFace, detectionModel, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }

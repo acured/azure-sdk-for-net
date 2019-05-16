@@ -921,7 +921,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// * Optional parameters including faceId, landmarks, and attributes.
         /// Attributes include age, gender, headPose, smile, facialHair, glasses,
         /// emotion, hair, makeup, occlusion, accessories, blur, exposure and noise.
-        /// * No image will be stored. Only the extracted face feature will be stored
+        /// * The extracted face feature, instead of the actual image, will be stored
         /// on server. The faceId is an identifier of the face feature and will be used
         /// in [Face -
         /// Identify](/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395239),
@@ -945,7 +945,8 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// or being occluded, or wrong image orientation.
         /// * Attributes (age, gender, headPose, smile, facialHair, glasses, emotion,
         /// hair, makeup, occlusion, accessories, blur, exposure and noise) may not be
-        /// perfectly accurate.
+        /// perfectly accurate. HeadPose's pitch value is a reserved field and will
+        /// always return 0.
         /// * Different 'recognitionModel' values are provided. If follow-up operations
         /// like Verify, Identify, Find Similar are needed, please specify the
         /// recognition model with 'recognitionModel' parameter. The default value for
@@ -954,6 +955,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// the detected faceIds will be associated with the specified recognition
         /// model. More details, please refer to [How to specify a recognition
         /// model](https://docs.microsoft.com/en-us/azure/cognitive-services/face/face-api-how-to-topics/specify-recognition-model)
+        ///
         /// </summary>
         /// <param name='url'>
         /// Publicly reachable URL of an image
@@ -986,6 +988,14 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// A value indicating whether the operation should return 'recognitionModel'
         /// in response.
         /// </param>
+        /// <param name='detectionModel'>
+        /// Name of detection model. Detection model is used to detect faces from
+        /// images. A detection model name can be provided when performing Face -
+        /// Detect or (Large)FaceList - AddFace or (Large)PersonGroupPerson - AddFace.
+        /// The default value is 'detection_01', if latest model needed, please
+        /// explicitly specify the model you need. Possible values include:
+        /// 'detection_01', 'detection_02'
+        /// </param>
         /// <param name='customHeaders'>
         /// Headers that will be added to request.
         /// </param>
@@ -1007,7 +1017,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<IList<DetectedFace>>> DetectWithUrlWithHttpMessagesAsync(string url, bool? returnFaceId = true, bool? returnFaceLandmarks = false, IList<FaceAttributeType> returnFaceAttributes = default(IList<FaceAttributeType>), string recognitionModel = default(string), bool? returnRecognitionModel = false, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<IList<DetectedFace>>> DetectWithUrlWithHttpMessagesAsync(string url, bool? returnFaceId = true, bool? returnFaceLandmarks = false, IList<FaceAttributeType> returnFaceAttributes = default(IList<FaceAttributeType>), string recognitionModel = default(string), bool? returnRecognitionModel = false, string detectionModel = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (Client.Endpoint == null)
             {
@@ -1034,6 +1044,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
                 tracingParameters.Add("returnFaceAttributes", returnFaceAttributes);
                 tracingParameters.Add("recognitionModel", recognitionModel);
                 tracingParameters.Add("returnRecognitionModel", returnRecognitionModel);
+                tracingParameters.Add("detectionModel", detectionModel);
                 tracingParameters.Add("imageUrl", imageUrl);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "DetectWithUrl", tracingParameters);
@@ -1062,6 +1073,10 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
             if (returnRecognitionModel != null)
             {
                 _queryParameters.Add(string.Format("returnRecognitionModel={0}", System.Uri.EscapeDataString(Rest.Serialization.SafeJsonConvert.SerializeObject(returnRecognitionModel, Client.SerializationSettings).Trim('"'))));
+            }
+            if (detectionModel != null)
+            {
+                _queryParameters.Add(string.Format("detectionModel={0}", System.Uri.EscapeDataString(detectionModel)));
             }
             if (_queryParameters.Count > 0)
             {
@@ -1410,6 +1425,14 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// A value indicating whether the operation should return 'recognitionModel'
         /// in response.
         /// </param>
+        /// <param name='detectionModel'>
+        /// Name of detection model. Detection model is used to detect faces from
+        /// images. A detection model name can be provided when performing Face -
+        /// Detect or (Large)FaceList - AddFace or (Large)PersonGroupPerson - AddFace.
+        /// The default value is 'detection_01', if latest model needed, please
+        /// explicitly specify the model you need. Possible values include:
+        /// 'detection_01', 'detection_02'
+        /// </param>
         /// <param name='customHeaders'>
         /// Headers that will be added to request.
         /// </param>
@@ -1431,7 +1454,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<IList<DetectedFace>>> DetectWithStreamWithHttpMessagesAsync(Stream image, bool? returnFaceId = true, bool? returnFaceLandmarks = false, IList<FaceAttributeType> returnFaceAttributes = default(IList<FaceAttributeType>), string recognitionModel = default(string), bool? returnRecognitionModel = false, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<IList<DetectedFace>>> DetectWithStreamWithHttpMessagesAsync(Stream image, bool? returnFaceId = true, bool? returnFaceLandmarks = false, IList<FaceAttributeType> returnFaceAttributes = default(IList<FaceAttributeType>), string recognitionModel = default(string), bool? returnRecognitionModel = false, string detectionModel = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (Client.Endpoint == null)
             {
@@ -1454,6 +1477,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
                 tracingParameters.Add("image", image);
                 tracingParameters.Add("recognitionModel", recognitionModel);
                 tracingParameters.Add("returnRecognitionModel", returnRecognitionModel);
+                tracingParameters.Add("detectionModel", detectionModel);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "DetectWithStream", tracingParameters);
             }
@@ -1481,6 +1505,10 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
             if (returnRecognitionModel != null)
             {
                 _queryParameters.Add(string.Format("returnRecognitionModel={0}", System.Uri.EscapeDataString(Rest.Serialization.SafeJsonConvert.SerializeObject(returnRecognitionModel, Client.SerializationSettings).Trim('"'))));
+            }
+            if (detectionModel != null)
+            {
+                _queryParameters.Add(string.Format("detectionModel={0}", System.Uri.EscapeDataString(detectionModel)));
             }
             if (_queryParameters.Count > 0)
             {

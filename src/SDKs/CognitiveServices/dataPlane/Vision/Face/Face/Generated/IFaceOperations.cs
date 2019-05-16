@@ -261,7 +261,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// Attributes include age, gender, headPose, smile, facialHair,
         /// glasses, emotion, hair, makeup, occlusion, accessories, blur,
         /// exposure and noise.
-        /// * No image will be stored. Only the extracted face feature will be
+        /// * The extracted face feature, instead of the actual image, will be
         /// stored on server. The faceId is an identifier of the face feature
         /// and will be used in [Face -
         /// Identify](/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395239),
@@ -285,7 +285,8 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// angles (head-pose) or being occluded, or wrong image orientation.
         /// * Attributes (age, gender, headPose, smile, facialHair, glasses,
         /// emotion, hair, makeup, occlusion, accessories, blur, exposure and
-        /// noise) may not be perfectly accurate.
+        /// noise) may not be perfectly accurate. HeadPose's pitch value is a
+        /// reserved field and will always return 0.
         /// * Different 'recognitionModel' values are provided. If follow-up
         /// operations like Verify, Identify, Find Similar are needed, please
         /// specify the recognition model with 'recognitionModel' parameter.
@@ -295,6 +296,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// associated with the specified recognition model. More details,
         /// please refer to [How to specify a recognition
         /// model](https://docs.microsoft.com/en-us/azure/cognitive-services/face/face-api-how-to-topics/specify-recognition-model)
+        ///
         /// </summary>
         /// <param name='url'>
         /// Publicly reachable URL of an image
@@ -328,6 +330,15 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// A value indicating whether the operation should return
         /// 'recognitionModel' in response.
         /// </param>
+        /// <param name='detectionModel'>
+        /// Name of detection model. Detection model is used to detect faces
+        /// from images. A detection model name can be provided when performing
+        /// Face - Detect or (Large)FaceList - AddFace or
+        /// (Large)PersonGroupPerson - AddFace. The default value is
+        /// 'detection_01', if latest model needed, please explicitly specify
+        /// the model you need. Possible values include: 'detection_01',
+        /// 'detection_02'
+        /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
         /// </param>
@@ -343,7 +354,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// <exception cref="Microsoft.Rest.ValidationException">
         /// Thrown when a required parameter is null
         /// </exception>
-        Task<HttpOperationResponse<IList<DetectedFace>>> DetectWithUrlWithHttpMessagesAsync(string url, bool? returnFaceId = true, bool? returnFaceLandmarks = false, IList<FaceAttributeType> returnFaceAttributes = default(IList<FaceAttributeType>), string recognitionModel = default(string), bool? returnRecognitionModel = false, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<IList<DetectedFace>>> DetectWithUrlWithHttpMessagesAsync(string url, bool? returnFaceId = true, bool? returnFaceLandmarks = false, IList<FaceAttributeType> returnFaceAttributes = default(IList<FaceAttributeType>), string recognitionModel = default(string), bool? returnRecognitionModel = false, string detectionModel = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Verify whether two faces belong to a same person. Compares a face
         /// Id with a Person Id
@@ -420,6 +431,15 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// A value indicating whether the operation should return
         /// 'recognitionModel' in response.
         /// </param>
+        /// <param name='detectionModel'>
+        /// Name of detection model. Detection model is used to detect faces
+        /// from images. A detection model name can be provided when performing
+        /// Face - Detect or (Large)FaceList - AddFace or
+        /// (Large)PersonGroupPerson - AddFace. The default value is
+        /// 'detection_01', if latest model needed, please explicitly specify
+        /// the model you need. Possible values include: 'detection_01',
+        /// 'detection_02'
+        /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
         /// </param>
@@ -435,6 +455,6 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// <exception cref="Microsoft.Rest.ValidationException">
         /// Thrown when a required parameter is null
         /// </exception>
-        Task<HttpOperationResponse<IList<DetectedFace>>> DetectWithStreamWithHttpMessagesAsync(Stream image, bool? returnFaceId = true, bool? returnFaceLandmarks = false, IList<FaceAttributeType> returnFaceAttributes = default(IList<FaceAttributeType>), string recognitionModel = default(string), bool? returnRecognitionModel = false, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<IList<DetectedFace>>> DetectWithStreamWithHttpMessagesAsync(Stream image, bool? returnFaceId = true, bool? returnFaceLandmarks = false, IList<FaceAttributeType> returnFaceAttributes = default(IList<FaceAttributeType>), string recognitionModel = default(string), bool? returnRecognitionModel = false, string detectionModel = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
     }
 }
