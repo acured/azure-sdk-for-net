@@ -10,6 +10,8 @@ namespace FaceSDK.Tests
 {
     public class FaceVerificationTests : BaseTests
     {
+        private static readonly string detectionModel = DetectionModel.Detection01;
+
         private static readonly string recognitionModel = RecognitionModel.Recognition02;
 
         [Fact]
@@ -25,12 +27,12 @@ namespace FaceSDK.Tests
                 Guid? faceId2 = null;
                 using (FileStream stream = new FileStream(Path.Combine("TestImages", "verificationBase1.png"), FileMode.Open))
                 {
-                    faceId1 = client.Face.DetectWithStreamAsync(stream, true, recognitionModel: recognitionModel).Result[0].FaceId;
+                    faceId1 = client.Face.DetectWithStreamAsync(stream, true, detectionModel: detectionModel, recognitionModel: recognitionModel).Result[0].FaceId;
                 }
 
                 using (FileStream stream = new FileStream(Path.Combine("TestImages", "verificationCompare1.png"), FileMode.Open))
                 {
-                    faceId2 = client.Face.DetectWithStreamAsync(stream, true, recognitionModel: recognitionModel).Result[0].FaceId;
+                    faceId2 = client.Face.DetectWithStreamAsync(stream, true, detectionModel: detectionModel, recognitionModel: recognitionModel).Result[0].FaceId;
                 }
 
                 Assert.NotNull(faceId1);
@@ -58,12 +60,12 @@ namespace FaceSDK.Tests
                     Person createPersonResult = client.PersonGroupPerson.CreateAsync(personGroupId, "David").Result;
                     using (FileStream stream = new FileStream(Path.Combine("TestImages", "verificationBase1.png"), FileMode.Open))
                     {
-                        client.PersonGroupPerson.AddFaceFromStreamAsync(personGroupId, createPersonResult.PersonId, stream).Wait();
+                        client.PersonGroupPerson.AddFaceFromStreamAsync(personGroupId, createPersonResult.PersonId, stream, detectionModel: detectionModel).Wait();
                     }
 
                     using (FileStream stream = new FileStream(Path.Combine("TestImages", "verificationCompare1.png"), FileMode.Open))
                     {
-                        faceId2 = client.Face.DetectWithStreamAsync(stream, true, recognitionModel: recognitionModel).Result[0].FaceId;
+                        faceId2 = client.Face.DetectWithStreamAsync(stream, true, detectionModel: detectionModel, recognitionModel: recognitionModel).Result[0].FaceId;
                     }
 
                     Assert.NotNull(faceId2);
@@ -95,12 +97,12 @@ namespace FaceSDK.Tests
                     Person createPersonResult = client.LargePersonGroupPerson.CreateAsync(largePersonGroupId, "David").Result;
                     using (FileStream stream = new FileStream(Path.Combine("TestImages", "verificationBase1.png"), FileMode.Open))
                     {
-                        client.LargePersonGroupPerson.AddFaceFromStreamAsync(largePersonGroupId, createPersonResult.PersonId, stream).Wait();
+                        client.LargePersonGroupPerson.AddFaceFromStreamAsync(largePersonGroupId, createPersonResult.PersonId, stream, detectionModel: detectionModel).Wait();
                     }
 
                     using (FileStream stream = new FileStream(Path.Combine("TestImages", "verificationCompare1.png"), FileMode.Open))
                     {
-                        faceId2 = client.Face.DetectWithStreamAsync(stream, true, recognitionModel: recognitionModel).Result[0].FaceId;
+                        faceId2 = client.Face.DetectWithStreamAsync(stream, true, detectionModel: detectionModel, recognitionModel: recognitionModel).Result[0].FaceId;
                     }
 
                     Assert.NotNull(faceId2);
@@ -128,12 +130,12 @@ namespace FaceSDK.Tests
                 Guid? faceId2 = null;
                 using (FileStream stream = new FileStream(Path.Combine("TestImages", "verificationBase1.png"), FileMode.Open))
                 {
-                    faceId1 = client.Face.DetectWithStreamAsync(stream, true, recognitionModel: recognitionModel).Result[0].FaceId;
+                    faceId1 = client.Face.DetectWithStreamAsync(stream, true, detectionModel: detectionModel, recognitionModel: recognitionModel).Result[0].FaceId;
                 }
 
                 using (FileStream stream = new FileStream(Path.Combine("TestImages", "verificationCompare2.png"), FileMode.Open))
                 {
-                    faceId2 = client.Face.DetectWithStreamAsync(stream, true, recognitionModel: recognitionModel).Result[0].FaceId;
+                    faceId2 = client.Face.DetectWithStreamAsync(stream, true, detectionModel: detectionModel, recognitionModel: recognitionModel).Result[0].FaceId;
                 }
 
                 Assert.NotNull(faceId1);
@@ -161,12 +163,12 @@ namespace FaceSDK.Tests
                     Person createPersonResult = client.PersonGroupPerson.CreateAsync(personGroupId, "David").Result;
                     using (FileStream stream = new FileStream(Path.Combine("TestImages", "verificationBase1.png"), FileMode.Open))
                     {
-                        client.PersonGroupPerson.AddFaceFromStreamAsync(personGroupId, createPersonResult.PersonId, stream).Wait();
+                        client.PersonGroupPerson.AddFaceFromStreamAsync(personGroupId, createPersonResult.PersonId, stream, detectionModel: detectionModel).Wait();
                     }
 
                     using (FileStream stream = new FileStream(Path.Combine("TestImages", "verificationCompare2.png"), FileMode.Open))
                     {
-                        faceId2 = client.Face.DetectWithStreamAsync(stream, true, recognitionModel: recognitionModel).Result[0].FaceId;
+                        faceId2 = client.Face.DetectWithStreamAsync(stream, true, detectionModel: detectionModel, recognitionModel: recognitionModel).Result[0].FaceId;
                     }
 
                     Assert.NotNull(faceId2);
@@ -198,12 +200,12 @@ namespace FaceSDK.Tests
                     Person createPersonResult = client.LargePersonGroupPerson.CreateAsync(largePersonGroupId, "David").Result;
                     using (FileStream stream = new FileStream(Path.Combine("TestImages", "verificationBase1.png"), FileMode.Open))
                     {
-                        client.LargePersonGroupPerson.AddFaceFromStreamAsync(largePersonGroupId, createPersonResult.PersonId, stream).Wait();
+                        client.LargePersonGroupPerson.AddFaceFromStreamAsync(largePersonGroupId, createPersonResult.PersonId, stream, detectionModel: detectionModel).Wait();
                     }
 
                     using (FileStream stream = new FileStream(Path.Combine("TestImages", "verificationCompare2.png"), FileMode.Open))
                     {
-                        faceId2 = client.Face.DetectWithStreamAsync(stream, true, recognitionModel: recognitionModel).Result[0].FaceId;
+                        faceId2 = client.Face.DetectWithStreamAsync(stream, true, detectionModel: detectionModel, recognitionModel: recognitionModel).Result[0].FaceId;
                     }
 
                     Assert.NotNull(faceId2);
