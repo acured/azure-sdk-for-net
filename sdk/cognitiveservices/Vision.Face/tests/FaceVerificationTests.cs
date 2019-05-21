@@ -117,7 +117,7 @@ namespace FaceSDK.Tests
             }
         }
 
-        [Fact(Skip = "https://github.com/Azure/azure-sdk-for-net/issues/6216")]
+        [Fact]
         public void FaceVerificationFaceNegative()
         {
             using (MockContext context = MockContext.Start(this.GetType().FullName))
@@ -146,7 +146,7 @@ namespace FaceSDK.Tests
             }
         }
 
-        [Fact(Skip = "https://github.com/Azure/azure-sdk-for-net/issues/6216")]
+        [Fact]
         public void FaceVerificationPersonGroupNegative()
         {
             using (MockContext context = MockContext.Start(this.GetType().FullName))
@@ -183,7 +183,7 @@ namespace FaceSDK.Tests
             }
         }
 
-        [Fact(Skip = "https://github.com/Azure/azure-sdk-for-net/issues/6216")]
+        [Fact]
         public void FaceVerificationLargePersonGroupNegative()
         {
             using (MockContext context = MockContext.Start(this.GetType().FullName))

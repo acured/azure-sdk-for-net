@@ -21,7 +21,7 @@ namespace FaceSDK.Tests
 
         private static readonly string recognitionModel = RecognitionModel.Recognition02;
 
-        [Fact(Skip = "https://github.com/Azure/azure-sdk-for-net/issues/6216")]
+        [Fact]
         public void FaceSnapshotTestFaceList()
         {
             using (MockContext context = MockContext.Start(this.GetType().FullName))
@@ -76,7 +76,7 @@ namespace FaceSDK.Tests
             }
         }
 
-        [Fact(Skip = "https://github.com/Azure/azure-sdk-for-net/issues/6216")]
+        [Fact]
         public void FaceSnapshotTestLargeFaceList()
         {
             using (MockContext context = MockContext.Start(this.GetType().FullName))
@@ -137,7 +137,7 @@ namespace FaceSDK.Tests
             }
         }
 
-        [Fact(Skip = "https://github.com/Azure/azure-sdk-for-net/issues/6216")]
+        [Fact]
         public void FaceSnapshotTestLargePersonGroup()
         {
             using (MockContext context = MockContext.Start(this.GetType().FullName))
@@ -207,7 +207,7 @@ namespace FaceSDK.Tests
             }
         }
 
-        [Fact(Skip = "https://github.com/Azure/azure-sdk-for-net/issues/6216")]
+        [Fact]
         public void FaceSnapshotTestPersonGroup()
         {
             using (MockContext context = MockContext.Start(this.GetType().FullName))
