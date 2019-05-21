@@ -262,6 +262,15 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// targetFace means there is only one face detected in the entire
         /// image.
         /// </param>
+        /// <param name='detectionModel'>
+        /// Name of detection model. Detection model is used to detect faces
+        /// from images. A detection model name can be provided when performing
+        /// Face - Detect or (Large)FaceList - AddFace or
+        /// (Large)PersonGroupPerson - AddFace. The default value is
+        /// 'detection_01', if latest model needed, please explicitly specify
+        /// the model you need. Possible values include: 'detection_01',
+        /// 'detection_02'
+        /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
         /// </param>
@@ -277,7 +286,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// <exception cref="Microsoft.Rest.ValidationException">
         /// Thrown when a required parameter is null
         /// </exception>
-        Task<HttpOperationResponse<PersistedFace>> AddFaceFromUrlWithHttpMessagesAsync(string faceListId, string url, string userData = default(string), IList<int> targetFace = default(IList<int>), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<PersistedFace>> AddFaceFromUrlWithHttpMessagesAsync(string faceListId, string url, string userData = default(string), IList<int> targetFace = default(IList<int>), string detectionModel = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Add a face to a face list. The input face is specified as an image
         /// with a targetFace rectangle. It returns a persistedFaceId
@@ -301,6 +310,15 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// targetFace means there is only one face detected in the entire
         /// image.
         /// </param>
+        /// <param name='detectionModel'>
+        /// Name of detection model. Detection model is used to detect faces
+        /// from images. A detection model name can be provided when performing
+        /// Face - Detect or (Large)FaceList - AddFace or
+        /// (Large)PersonGroupPerson - AddFace. The default value is
+        /// 'detection_01', if latest model needed, please explicitly specify
+        /// the model you need. Possible values include: 'detection_01',
+        /// 'detection_02'
+        /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
         /// </param>
@@ -316,6 +334,6 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// <exception cref="Microsoft.Rest.ValidationException">
         /// Thrown when a required parameter is null
         /// </exception>
-        Task<HttpOperationResponse<PersistedFace>> AddFaceFromStreamWithHttpMessagesAsync(string faceListId, Stream image, string userData = default(string), IList<int> targetFace = default(IList<int>), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<PersistedFace>> AddFaceFromStreamWithHttpMessagesAsync(string faceListId, Stream image, string userData = default(string), IList<int> targetFace = default(IList<int>), string detectionModel = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
     }
 }

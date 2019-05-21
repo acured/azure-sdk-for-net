@@ -354,12 +354,20 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
             /// targetFace is required to specify which face to add. No targetFace means
             /// there is only one face detected in the entire image.
             /// </param>
+            /// <param name='detectionModel'>
+            /// Name of detection model. Detection model is used to detect faces from
+            /// images. A detection model name can be provided when performing Face -
+            /// Detect or (Large)FaceList - AddFace or (Large)PersonGroupPerson - AddFace.
+            /// The default value is 'detection_01', if latest model needed, please
+            /// explicitly specify the model you need. Possible values include:
+            /// 'detection_01', 'detection_02'
+            /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<PersistedFace> AddFaceFromUrlAsync(this ILargeFaceListOperations operations, string largeFaceListId, string url, string userData = default(string), IList<int> targetFace = default(IList<int>), CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<PersistedFace> AddFaceFromUrlAsync(this ILargeFaceListOperations operations, string largeFaceListId, string url, string userData = default(string), IList<int> targetFace = default(IList<int>), string detectionModel = default(string), CancellationToken cancellationToken = default(CancellationToken))
             {
-                using (var _result = await operations.AddFaceFromUrlWithHttpMessagesAsync(largeFaceListId, url, userData, targetFace, null, cancellationToken).ConfigureAwait(false))
+                using (var _result = await operations.AddFaceFromUrlWithHttpMessagesAsync(largeFaceListId, url, userData, targetFace, detectionModel, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }
@@ -418,12 +426,20 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
             /// targetFace is required to specify which face to add. No targetFace means
             /// there is only one face detected in the entire image.
             /// </param>
+            /// <param name='detectionModel'>
+            /// Name of detection model. Detection model is used to detect faces from
+            /// images. A detection model name can be provided when performing Face -
+            /// Detect or (Large)FaceList - AddFace or (Large)PersonGroupPerson - AddFace.
+            /// The default value is 'detection_01', if latest model needed, please
+            /// explicitly specify the model you need. Possible values include:
+            /// 'detection_01', 'detection_02'
+            /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<PersistedFace> AddFaceFromStreamAsync(this ILargeFaceListOperations operations, string largeFaceListId, Stream image, string userData = default(string), IList<int> targetFace = default(IList<int>), CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<PersistedFace> AddFaceFromStreamAsync(this ILargeFaceListOperations operations, string largeFaceListId, Stream image, string userData = default(string), IList<int> targetFace = default(IList<int>), string detectionModel = default(string), CancellationToken cancellationToken = default(CancellationToken))
             {
-                using (var _result = await operations.AddFaceFromStreamWithHttpMessagesAsync(largeFaceListId, image, userData, targetFace, null, cancellationToken).ConfigureAwait(false))
+                using (var _result = await operations.AddFaceFromStreamWithHttpMessagesAsync(largeFaceListId, image, userData, targetFace, detectionModel, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }

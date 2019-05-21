@@ -1123,6 +1123,14 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// targetFace is required to specify which face to add. No targetFace means
         /// there is only one face detected in the entire image.
         /// </param>
+        /// <param name='detectionModel'>
+        /// Name of detection model. Detection model is used to detect faces from
+        /// images. A detection model name can be provided when performing Face -
+        /// Detect or (Large)FaceList - AddFace or (Large)PersonGroupPerson - AddFace.
+        /// The default value is 'detection_01', if latest model needed, please
+        /// explicitly specify the model you need. Possible values include:
+        /// 'detection_01', 'detection_02'
+        /// </param>
         /// <param name='customHeaders'>
         /// Headers that will be added to request.
         /// </param>
@@ -1144,7 +1152,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<PersistedFace>> AddFaceFromUrlWithHttpMessagesAsync(string faceListId, string url, string userData = default(string), IList<int> targetFace = default(IList<int>), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<PersistedFace>> AddFaceFromUrlWithHttpMessagesAsync(string faceListId, string url, string userData = default(string), IList<int> targetFace = default(IList<int>), string detectionModel = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (Client.Endpoint == null)
             {
@@ -1191,6 +1199,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
                 tracingParameters.Add("faceListId", faceListId);
                 tracingParameters.Add("userData", userData);
                 tracingParameters.Add("targetFace", targetFace);
+                tracingParameters.Add("detectionModel", detectionModel);
                 tracingParameters.Add("imageUrl", imageUrl);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "AddFaceFromUrl", tracingParameters);
@@ -1208,6 +1217,10 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
             if (targetFace != null)
             {
                 _queryParameters.Add(string.Format("targetFace={0}", System.Uri.EscapeDataString(string.Join(",", targetFace))));
+            }
+            if (detectionModel != null)
+            {
+                _queryParameters.Add(string.Format("detectionModel={0}", System.Uri.EscapeDataString(detectionModel)));
             }
             if (_queryParameters.Count > 0)
             {
@@ -1341,6 +1354,14 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// targetFace is required to specify which face to add. No targetFace means
         /// there is only one face detected in the entire image.
         /// </param>
+        /// <param name='detectionModel'>
+        /// Name of detection model. Detection model is used to detect faces from
+        /// images. A detection model name can be provided when performing Face -
+        /// Detect or (Large)FaceList - AddFace or (Large)PersonGroupPerson - AddFace.
+        /// The default value is 'detection_01', if latest model needed, please
+        /// explicitly specify the model you need. Possible values include:
+        /// 'detection_01', 'detection_02'
+        /// </param>
         /// <param name='customHeaders'>
         /// Headers that will be added to request.
         /// </param>
@@ -1362,7 +1383,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<PersistedFace>> AddFaceFromStreamWithHttpMessagesAsync(string faceListId, Stream image, string userData = default(string), IList<int> targetFace = default(IList<int>), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<PersistedFace>> AddFaceFromStreamWithHttpMessagesAsync(string faceListId, Stream image, string userData = default(string), IList<int> targetFace = default(IList<int>), string detectionModel = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (Client.Endpoint == null)
             {
@@ -1405,6 +1426,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
                 tracingParameters.Add("userData", userData);
                 tracingParameters.Add("targetFace", targetFace);
                 tracingParameters.Add("image", image);
+                tracingParameters.Add("detectionModel", detectionModel);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "AddFaceFromStream", tracingParameters);
             }
@@ -1421,6 +1443,10 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
             if (targetFace != null)
             {
                 _queryParameters.Add(string.Format("targetFace={0}", System.Uri.EscapeDataString(string.Join(",", targetFace))));
+            }
+            if (detectionModel != null)
+            {
+                _queryParameters.Add(string.Format("detectionModel={0}", System.Uri.EscapeDataString(detectionModel)));
             }
             if (_queryParameters.Count > 0)
             {

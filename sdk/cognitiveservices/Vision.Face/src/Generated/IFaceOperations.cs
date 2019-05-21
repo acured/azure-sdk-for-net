@@ -328,6 +328,15 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// A value indicating whether the operation should return
         /// 'recognitionModel' in response.
         /// </param>
+        /// <param name='detectionModel'>
+        /// Name of detection model. Detection model is used to detect faces
+        /// from images. A detection model name can be provided when performing
+        /// Face - Detect or (Large)FaceList - AddFace or
+        /// (Large)PersonGroupPerson - AddFace. The default value is
+        /// 'detection_01', if latest model needed, please explicitly specify
+        /// the model you need. Possible values include: 'detection_01',
+        /// 'detection_02'
+        /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
         /// </param>
@@ -343,7 +352,7 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// <exception cref="Microsoft.Rest.ValidationException">
         /// Thrown when a required parameter is null
         /// </exception>
-        Task<HttpOperationResponse<IList<DetectedFace>>> DetectWithUrlWithHttpMessagesAsync(string url, bool? returnFaceId = true, bool? returnFaceLandmarks = false, IList<FaceAttributeType> returnFaceAttributes = default(IList<FaceAttributeType>), string recognitionModel = default(string), bool? returnRecognitionModel = false, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<IList<DetectedFace>>> DetectWithUrlWithHttpMessagesAsync(string url, bool? returnFaceId = true, bool? returnFaceLandmarks = false, IList<FaceAttributeType> returnFaceAttributes = default(IList<FaceAttributeType>), string recognitionModel = default(string), bool? returnRecognitionModel = false, string detectionModel = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Verify whether two faces belong to a same person. Compares a face
         /// Id with a Person Id
@@ -420,6 +429,15 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// A value indicating whether the operation should return
         /// 'recognitionModel' in response.
         /// </param>
+        /// <param name='detectionModel'>
+        /// Name of detection model. Detection model is used to detect faces
+        /// from images. A detection model name can be provided when performing
+        /// Face - Detect or (Large)FaceList - AddFace or
+        /// (Large)PersonGroupPerson - AddFace. The default value is
+        /// 'detection_01', if latest model needed, please explicitly specify
+        /// the model you need. Possible values include: 'detection_01',
+        /// 'detection_02'
+        /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
         /// </param>
@@ -435,6 +453,6 @@ namespace Microsoft.Azure.CognitiveServices.Vision.Face
         /// <exception cref="Microsoft.Rest.ValidationException">
         /// Thrown when a required parameter is null
         /// </exception>
-        Task<HttpOperationResponse<IList<DetectedFace>>> DetectWithStreamWithHttpMessagesAsync(Stream image, bool? returnFaceId = true, bool? returnFaceLandmarks = false, IList<FaceAttributeType> returnFaceAttributes = default(IList<FaceAttributeType>), string recognitionModel = default(string), bool? returnRecognitionModel = false, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<IList<DetectedFace>>> DetectWithStreamWithHttpMessagesAsync(Stream image, bool? returnFaceId = true, bool? returnFaceLandmarks = false, IList<FaceAttributeType> returnFaceAttributes = default(IList<FaceAttributeType>), string recognitionModel = default(string), bool? returnRecognitionModel = false, string detectionModel = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
     }
 }
